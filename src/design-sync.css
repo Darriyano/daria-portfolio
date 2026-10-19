@@ -1,0 +1,232 @@
+/* Current desktop content shares reusable responsive compositions. */
+.contact-stage { display: contents; }
+@media (min-width: 1024px) {
+  .section-contacts { padding-bottom: 18px; }
+  .section-contacts .section-inner,
+  .contacts-content { min-height: calc(100svh - 186px); }
+  .contacts-content footer { flex: none; padding-block: 20px 0; }
+  /* The stage absorbs spare height; the collage keeps every authored card
+     offset. Its height includes the rotated cards and attached stickers. */
+  .contact-stage {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding-top: 40px;
+    min-height: 650px;
+  }
+  .contact-stage .contact-collage {
+    flex: none;
+    width: 100%;
+    height: 610px;
+    min-height: 610px;
+    margin: 0;
+  }
+}
+.project-content h2 { min-width: 0; }
+.project-title-text { display: block; }
+.design .contribution strong { font-size: clamp(17px, min(1.6vw, 2.45svh), 24px); }
+.laptop-composite { position: relative; width: 100%; aspect-ratio: 1053 / 610; }
+.laptop-composite > img:not(.laptop-screen) { position: relative; width: 100%; height: auto; }
+.laptop-composite > .laptop-screen { position: absolute; left: 11.1%; top: 2.1%; width: 78%; height: 87%; object-fit: cover; object-position: left top; }
+.phone-hardware { position: relative; width: 100%; height: 100%; border: 3px solid #84818a; border-radius: 15.7% / 7.4%; padding: 3%; background: linear-gradient(180deg,#ded5db,#56535d 2%,#08090b 8%,#151318 85%,#77717b 98%,#d4c6ce); box-shadow: 22px 38px 48px #0009, 45px 85px 100px 7px #0007; }
+.composed-mockups .phone-hardware img { position: static; width: 100%; height: 100%; object-fit: cover; border: 2px solid #030405; border-radius: 13.4% / 6%; }
+.dynamic-island { position: absolute; width: 28.3%; height: 3.8%; top: 3.25%; left: 35.5%; border-radius: 24px; background: #050507; }
+.dynamic-island::after { content: ''; position: absolute; right: 12%; top: 28%; width: 10%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 40% 35%,#32486c,#080c18 65%); }
+.phone-speaker { position: absolute; top: .8%; left: 42%; width: 15.7%; height: .28%; border-radius: 2px; background: #525058; }
+.secondary-star { position: absolute; left: -40px; top: -8px; width: 44px; height: 44px; padding: 9px; transform: translateX(-3px); }
+.secondary-star img { width: 100%; height: auto; filter: grayscale(1) brightness(3); }
+.secondary-star:hover { transform: translateX(-3px) scale(1.15); }
+.experience-annotation:focus-within { opacity: 1; }
+.constellation .experience-annotation { display: flex; align-items: flex-start; gap: 12px; width: max-content; max-width: none; margin: 0; transform: none; }
+.experience-annotation .secondary-label { display: block; max-width: 290px; }
+.constellation .secondary-star { position: relative; left: auto; top: auto; flex: 0 0 44px; width: 44px; height: 44px; margin: 0; padding: 9px; transform: none; }
+.constellation .secondary-star:hover { transform: scale(1.1); }
+.experience-annotation[data-star-side="right"] { flex-direction: row-reverse; }
+@media (min-width: 1024px) {
+  .annotation-hackathons .secondary-label { max-width: 388px; }
+  .annotation-speaker .secondary-label { max-width: 347px; }
+}
+@media (max-width: 1023px) {
+  .experience-annotation .secondary-label { max-width: 140px; }
+}
+@media (max-width: 600px) {
+  .experience-annotation .secondary-label { max-width: 112px; }
+}
+@media (max-width: 374px) {
+  .constellation .experience-annotation { flex-direction: column; }
+}
+.milestone-note-body h3 { white-space: pre-line; font-size: 24px; line-height: 1.2; margin: 0 0 12px; color: #a8384c; }
+.side-quest .paper-action { grid-column: 2; grid-row: 1; justify-self: end; align-self: start; width: min(378px, 85%); margin: 0; z-index: 4; }
+.side-quest .paper-action-label { white-space: nowrap; font-size: clamp(14px,1.6vw,24px); }
+.side-quest .paper-action-circle { width: 114%; transform: none; }
+.side-quest .project-content { grid-template-rows: auto minmax(0,1fr) 56px; }
+.side-quest .project-content h2 { padding-right: 0; max-width: 72%; }
+.side-quest .carousel-controls { grid-column: 1; grid-row: 3; justify-self: start; align-self: end; }
+.side-quest .project-copy { grid-column: 1; grid-row: 2; }
+.side-quest .creative-showcase .project-copy { padding: 0; }
+.side-quest .creative-showcase { grid-template-columns: minmax(0,54fr) minmax(0,46fr); }
+.side-quest .creative-showcase .project-media { grid-column: 2; width: min(100%,calc((var(--content-height) - 150px) * .9)); justify-self: end; }
+.side-quest .paper-media { width: 96%; margin-inline: 2%; background: transparent; }
+.side-quest .creative-showcase .paper-media { width: 83%; margin-inline: auto; }
+.side-quest .paper-media img { object-fit: contain; }
+.side-quest .project-description { margin-bottom: 0; }
+.side-quest .creative-showcase .project-description { max-width: none; }
+.side-quest .creative-showcase .paper-back { top: 5%; height: 90%; }
+.side-quest .project-description-group { display: flex; flex-direction: column; gap: clamp(20px,4svh,40px); }
+.side-quest .project-description-group .project-description + .project-description { margin-top: 0; }
+.side-quest .contributions { margin-top: 24px; }
+.side-quest .contribution strong { font-size: clamp(18px,min(1.85vw,3svh),28px); }
+@media (min-width: 1024px) {
+  .side-quest .project-content {
+    --previous-row-gap: clamp(16px,3svh,32px);
+    --header-gap: calc(var(--previous-row-gap) + 24px);
+    row-gap: var(--header-gap);
+  }
+  /* Landscape previews keep their previous dimensions, using free space in
+     the right side of the controls row for the increased header gap. */
+  .side-quest .game-showcase .project-media {
+    height: calc(100% + 48px);
+    align-self: start;
+  }
+  .side-quest .creative-showcase .project-media { grid-row: 2 / 4; padding-block: 0; }
+  .side-quest .creative-showcase .paper-media { width: 92%; }
+  .annotation-hackathons { max-width: 388px; }
+  .annotation-speaker { max-width: 347px; }
+}
+
+@media (max-width: 1023px) {
+  .design .contribution strong { font-size: 16px; }
+  .project-content h2 { font-size: clamp(30px,7vw,48px); }
+  .side-quest .project-content { row-gap: 32px; }
+  .side-quest .project-content h2 { max-width: 100%; margin-bottom: 0; }
+  .side-quest .paper-action { order: 1; width: min(280px,100%); margin: 0; align-self: flex-start; }
+  .side-quest .paper-action-label { font-size: 16px; white-space: normal; text-align: center; }
+  .side-quest .carousel-controls { order: 3; margin: 12px 0 2px; }
+  .side-quest .project-media { order: 4; }
+  .side-quest .creative-showcase .project-media { width: min(400px,100%); height: 540px; margin-inline: auto; }
+  .side-quest .creative-showcase .paper-media { height: 100%; }
+  .side-quest .project-copy { order: 2; padding: 0; }
+  .side-quest .project-description-group { gap: 24px; }
+  .phones.composed-mockups { height: min(660px,120vw); min-height: 0; margin-top: 20px; }
+  .composed-mockups .phone { width: 38%; height: auto; aspect-ratio: 355 / 759; }
+  .composed-mockups .phone-one { left: 11%; top: 18%; transform: rotate(17.07deg); }
+  .composed-mockups .phone-two { left: 50%; top: 5%; transform: rotate(17.07deg); }
+  .laptop { width: 100%; max-width: 100%; margin: 0; }
+  .laptop-composite { width: 100%; }
+  .secondary-star { width: 40px; height: 40px; left: -32px; padding: 10px; }
+  .annotation-horizons { margin-left: 28px; }
+  .annotation-hackathons { transform: translateY(-36px); }
+  .experience-annotation { font-size: 14px; max-width: 140px; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-inner { max-width: 800px; }
+  .hero-title { font-size: 64px; max-width: 560px; }
+  .sign { font-size: 64px; }
+  .hero-title .er { max-width: none; }
+  .intro-name { font-size: 24px; }
+  .hero-description { font-size: 24px; }
+  .hero-actions { max-width: 500px; justify-content: flex-start; gap: 40px; }
+  .primary-button { font-size: 24px; padding-inline: 40px; }
+  .hero-actions > a:nth-child(2) { font-size: 22px; }
+  .portrait-composition { max-width: 321px; }
+  .contribution p,.design .contribution strong { font-size: 20px; }
+  .contributions { gap: 28px; }
+  .phones.composed-mockups { height: 700px; width: min(650px,100%); margin-inline: auto; }
+  .composed-mockups .phone { width: 32%; }
+  .composed-mockups .phone-one { left: 16%; transform: rotate(26deg); }
+  .composed-mockups .phone-two { left: 53%; transform: rotate(26deg); top: 15%; }
+  .side-quest .project-description { font-size: 22px; }
+  .side-quest .paper-showcase { height: 440px; }
+  .side-quest .paper-media { height: 100%; }
+  .contact-card { max-width: 540px; }
+  .contact-collage { align-items: center; }
+}
+
+@media (min-width: 1024px) and (max-height: 800px) {
+  .design .contributions { gap: 20px; }
+  .design .contribution p { font-size: 17px; }
+  .design .contribution strong { font-size: 17px; }
+  .side-quest .project-description,.side-quest .contribution strong { font-size: 18px; }
+  .side-quest .project-description-group { gap: 20px; }
+  .side-quest .contributions { margin-top: 16px; }
+}
+@media (min-width: 1024px) and (max-height: 599px) {
+  .project-carousel { height: auto; }
+  .project-content { height: auto; min-height: 600px; }
+}
+@media (min-width: 1024px) and (max-height: 650px) {
+  .side-quest .project-content { --previous-row-gap: 16px; }
+}
+.paper-action > img { pointer-events: none; }
+
+/* Design Cases deliberately crop large devices at the section edge. The
+   stage can overflow its grid cell without resizing the text or controls. */
+.design .project-media { overflow: visible; }
+@media (min-width: 1024px) {
+  .design .phones {
+    --phone-width: clamp(320px,23.5vw,420px);
+    --phone-gap: clamp(12px,1vw,16px);
+    --phone-one-top: clamp(180px,15vw,240px);
+  }
+  .design .composed-mockups .phone-one {
+    left: calc(var(--phone-width) * .18);
+    top: var(--phone-one-top);
+  }
+  .design .composed-mockups .phone-two {
+    /* Project the stagger onto the 17.07° body-width axis. Bounding boxes
+       overlap by design; the visible parallel device edges stay apart. */
+    left: calc(var(--phone-width) * .18 + (var(--phone-width) + var(--phone-gap) + (var(--phone-one-top) - 24px) * sin(17.07deg)) / cos(17.07deg));
+    top: 24px;
+  }
+  .design .laptop { width: 100%; max-width: none; height: 100%; margin: 0; align-self: stretch; }
+  .design .laptop-composite {
+    position: absolute;
+    left: -80px;
+    top: 0;
+    width: clamp(1053px,69.65vw,1340px);
+    max-width: none;
+  }
+}
+@media (max-width: 767px) {
+  .design .phones.composed-mockups { --phone-width: clamp(210px,60vw,270px); --phone-gap: 10px; height: 600px; }
+  .design .composed-mockups .phone { width: var(--phone-width); transform: rotate(37.18deg); }
+  .design .composed-mockups .phone-one { left: -18%; top: 40px; }
+  .design .composed-mockups .phone-two { left: calc(-18% + (var(--phone-width) + var(--phone-gap) - 48px * sin(37.18deg)) / cos(37.18deg)); top: 88px; }
+  .design .laptop { position: relative; width: 100%; min-height: 380px; margin: 0; }
+  .design .laptop-composite { position: absolute; left: -28px; top: 0; width: clamp(640px,160vw,820px); max-width: none; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .design .phones.composed-mockups { --phone-width: clamp(270px,39vw,355px); --phone-gap: 12px; width: 100%; height: 760px; }
+  .design .composed-mockups .phone { width: var(--phone-width); transform: rotate(37.18deg); }
+  .design .composed-mockups .phone-one { left: 18%; top: 40px; }
+  .design .composed-mockups .phone-two { left: calc(18% + (var(--phone-width) + var(--phone-gap) - 48px * sin(37.18deg)) / cos(37.18deg)); top: 88px; }
+  .design .laptop { position: relative; width: 100%; min-height: 620px; margin: 0; }
+  .design .laptop-composite { position: absolute; left: -40px; top: 0; width: clamp(900px,125vw,1100px); max-width: none; }
+}
+
+/* Keep both Hero actions comfortably tappable at every layout size. */
+.hero-actions > a { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* Compact mobile actions and a content-aware Contacts footer. */
+@media (max-width: 1023px) {
+  .hero-actions {
+    width: fit-content;
+    max-width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 16px 36px;
+  }
+  .section-contacts {
+    --contacts-bottom: max(18px, env(safe-area-inset-bottom, 0px));
+    min-height: 100dvh;
+    padding-bottom: var(--contacts-bottom);
+  }
+  .section-contacts .contacts-content {
+    min-height: calc(100dvh - 120px - var(--contacts-bottom));
+  }
+  .contacts-content footer { flex: none; margin-top: auto; }
+}
+@media (max-width: 374px) {
+  .hero-actions { column-gap: 24px; }
+}

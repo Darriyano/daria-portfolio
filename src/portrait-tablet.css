@@ -1,0 +1,75 @@
+/* Wide portrait tablets: stack copy/media without changing the desktop timeline
+   or contact collage. Keep this range aligned with App's scroll-mode query. */
+@media (min-width: 1024px) and (max-width: 1199px) and (orientation: portrait) {
+  html { scroll-snap-type: none; }
+  .presentation-section { scroll-snap-align: none; scroll-snap-stop: normal; }
+
+  .section-main, .section-design-cases, .section-side-quests {
+    padding: 144px 48px 64px;
+    min-height: 0;
+  }
+  .section-main .section-inner,
+  .section-design-cases .section-inner,
+  .section-side-quests .section-inner { max-width: 800px; min-height: 0; }
+
+  .hero-layout { display: flex; flex-direction: column; gap: 62px; min-height: 0; }
+  .hero-copy { width: 100%; max-width: none; }
+  .intro-name { font-size: 24px; }
+  .hero-title { font-size: 64px; max-width: 560px; }
+  .product { margin-bottom: 20px; }
+  .designer { gap: 16px; }
+  .sign { padding: 3px 18px; }
+  .er { padding-inline: 16px; }
+  .hero-description { font-size: 24px; line-height: 1.2; margin-top: 34px; }
+  .desktop-break { display: none; }
+  .hero-actions { margin-top: 40px; padding: 0; gap: 40px; }
+  .primary-button { font-size: 24px; }
+  .hero-actions > a:nth-child(2) { font-size: 22px; }
+  .portrait-composition { width: 100%; max-width: 321px; margin: 12px auto 0; }
+  .portrait-star { width: 83px; right: -15px; top: -12px; }
+  .portrait-heart { width: 83px; left: -12px; bottom: -16px; }
+
+  .project-carousel { height: auto; min-height: 0; }
+  .project-content, .side-quest .project-content {
+    display: flex; flex-direction: column; height: auto; min-height: 0; gap: 32px;
+  }
+  .project-content h2, .side-quest .project-content h2 {
+    order: 0; max-width: 100%; padding: 0; margin: 0; font-size: 48px;
+  }
+  .project-copy, .side-quest .project-copy { order: 1; flex: none; padding: 0; }
+  .contributions { gap: 28px; }
+  .contribution { gap: 16px; }
+  .contribution p, .design .contribution strong { font-size: 20px; }
+  .contribution strong, .side-quest .contribution strong { font-size: 22px; }
+  .project-description, .side-quest .project-description { font-size: 22px; max-width: none; margin-bottom: 0; }
+  .side-quest .project-description-group { gap: 24px; }
+  .paper-action, .side-quest .paper-action {
+    order: 2; align-self: flex-start; width: 280px; min-height: 64px; margin: 0;
+  }
+  .paper-action-label, .side-quest .paper-action-label { font-size: 16px; padding: 16px; }
+  .carousel-controls, .side-quest .carousel-controls {
+    order: 3; align-self: flex-start; margin: 0; gap: 24px;
+  }
+  .carousel-controls button { font-size: 44px; }
+  .carousel-controls output { font-size: 28px; }
+  .project-media, .side-quest .project-media {
+    order: 4; flex: none; width: 100%; min-height: 0; margin: 0; align-self: center;
+  }
+  .design .phones.composed-mockups { --phone-width: 312px; height: 800px; }
+  .design .composed-mockups .phone { width: var(--phone-width); transform: rotate(37.18deg); }
+  .design .composed-mockups .phone-one { left: 18%; top: 40px; }
+  .design .composed-mockups .phone-two {
+    left: calc(18% + (var(--phone-width) + 12px - 48px * sin(37.18deg)) / cos(37.18deg)); top: 88px;
+  }
+  .design .single-mobile-mockup .phone-one { left: 50%; top: 20px; width: 312px; transform: translateX(-50%); }
+  .design .single-mobile-mockup { height: 720px; }
+  .design .laptop { position: relative; height: 620px; max-width: none; }
+  .design .laptop-composite { left: -40px; top: 0; width: 1000px; }
+  .side-quest .game-showcase .project-media { height: 500px; }
+  .side-quest .creative-showcase .project-media { width: 420px; max-width: 100%; height: 600px; padding-block: 0; }
+  .side-quest .paper-media { height: 100%; }
+
+  .section-experience { min-height: 0; padding-block: 144px 80px; }
+  .experience-content { min-height: 0; }
+
+}

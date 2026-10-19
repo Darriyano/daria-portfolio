@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="44.06" height="44.82" viewBox="0 0 44.06 44.82" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Scrapbook / Future / handpunched ticket" filter="url(#filter0_d_0_21)">
+<path id="&#208;&#144;&#208;&#186;&#209;&#134;&#208;&#181;&#208;&#189;&#209;&#130; / &#209;&#128;&#208;&#184;&#209;&#129;&#208;&#190;&#208;&#178;&#208;&#176;&#208;&#189;&#208;&#189;&#209;&#139;&#208;&#185; &#209;&#129;&#208;&#184;&#208;&#187;&#209;&#131;&#209;&#141;&#209;&#130;" d="M19.84 2.5L24.78 3.64L29.72 6.3L32.38 11.62L36.56 15.8L35.04 21.5L36.56 26.44L31.62 31.76L27.06 35.18L20.22 36.32L14.52 34.8L8.82 32.9L5.4 27.58L3.5 21.88L4.64 16.18L6.54 10.48L11.86 6.68L16.42 4.02L19.84 2.5Z" fill="#FF8DB4" stroke-width="3" stroke-linejoin="round" stroke="#FFE9CE"/>
+</g>
+<defs>
+<filter id="filter0_d_0_21" x="-1.15959" y="-0.399886" width="46" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="2" dy="3"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.28 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_21"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_21" result="shape"/>
+</filter>
+</defs>
+</svg>
