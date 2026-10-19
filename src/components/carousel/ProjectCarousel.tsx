@@ -1,3 +1,4 @@
+import { assetUrl } from '../../utils/assetUrl'
 import { useEffect, useRef, useState } from 'react'
 import type { PortfolioProject, ProjectMedia } from '../../types/portfolio'
 import { CarouselControls } from './CarouselControls'
@@ -34,9 +35,9 @@ function ProjectPresentation({ project }: { project: PortfolioProject }) {
   if (variant === 'desktop-mockup' && project.laptopScreen) return <div className="project-media laptop"><div className="laptop-composite"><img className="laptop-screen" src={project.laptopScreen} alt={`${project.title} interface`} loading="lazy" /><Media media={media[0]} /></div></div>
   if (variant === 'desktop-mockup') return <div className="project-media laptop"><MediaGallery items={media} /></div>
   return <div className={`project-media paper-showcase ${variant}`}>
-    <img className="paper-back" src={project.paperArtwork ?? (variant === 'creative-showcase' ? '/assets/37818.svg' : '/assets/a4d31.svg')} alt="" />
+    <img className="paper-back" src={project.paperArtwork ?? (variant === 'creative-showcase' ? assetUrl('/assets/37818.svg') : assetUrl('/assets/a4d31.svg'))} alt="" />
     <div className="paper-media">{media.length ? <MediaGallery items={media} /> : <div className="media-placeholder" aria-label="Project image not supplied" />}</div>
-    <img className="showcase-sticker" src={variant === 'creative-showcase' ? '/assets/63f31.svg' : '/assets/ed5d2.svg'} alt="" />
+    <img className="showcase-sticker" src={variant === 'creative-showcase' ? assetUrl('/assets/63f31.svg') : assetUrl('/assets/ed5d2.svg')} alt="" />
   </div>
 }
 export function ProjectCarousel({ projects, variant }: { projects: PortfolioProject[]; variant: 'design' | 'side-quest' }) {
@@ -70,11 +71,11 @@ export function ProjectCarousel({ projects, variant }: { projects: PortfolioProj
       <div className="project-copy">
         {preview.description.length > 0 && <div className="project-description-group">{preview.description.map((text, index) => <p className="project-description" key={index}>{text}</p>)}</div>}
         <div className="contributions">{preview.contributions.map((item, index) => <div className="contribution" key={index}>
-          <img src="/assets/840f7.svg" alt="" /><div><p>{item.label}</p><strong>{item.text}</strong></div>
+          <img src={assetUrl("/assets/840f7.svg")} alt="" /><div><p>{item.label}</p><strong>{item.text}</strong></div>
         </div>)}</div>
       </div>
         {(externalUrl || decoration) && <Action className={`paper-action${!decoration?.circle ? ' without-circle' : ''}`} href={externalUrl} target={externalUrl ? '_blank' : undefined} rel={externalUrl ? 'noopener noreferrer' : undefined}>
-          <img className="paper-action-background" src="/assets/e8248.svg" alt="" />
+          <img className="paper-action-background" src={assetUrl("/assets/e8248.svg")} alt="" />
           {decoration?.circle && <img className="paper-action-circle" src={decoration.circle} alt="" />}
           {externalUrl ? <span className="paper-action-label">{decoration?.label ?? preview.link?.label} ↗</span>
             : <span className="paper-action-label" role={decoration?.circle ? 'link' : undefined} aria-disabled={decoration?.circle ? true : undefined} title="Project URL has not been supplied">{decoration?.label}{decoration?.circle ? ' ↗' : ''}</span>}

@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl'
 import type { PortfolioProject } from '../types/portfolio'
 // Current desktop text and media; explicit frame numbering defines slide order.
 export const designCases = [
@@ -24,7 +25,7 @@ export const designCases = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/43e9b.png",
+        "src": assetUrl("/assets/43e9b.png"),
         "alt": "AllForms (2026) — laptop mockup",
         "type": "image"
       }
@@ -34,7 +35,7 @@ export const designCases = [
       "tablet": "desktop-mockup",
       "mobile": "desktop-mockup"
     },
-    "laptopScreen": "/assets/allforms-2026-screen.png"
+    "laptopScreen": assetUrl("/assets/allforms-2026-screen.png")
   },
   {
     "id": "minigarden",
@@ -59,12 +60,12 @@ export const designCases = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/5d80f.png",
+        "src": assetUrl("/assets/5d80f.png"),
         "alt": "MiniGarden (2025) — first app screen in iPhone mockup",
         "type": "image"
       },
       {
-        "src": "/assets/43f2e.png",
+        "src": assetUrl("/assets/43f2e.png"),
         "alt": "MiniGarden (2025) — second app screen in iPhone mockup",
         "type": "image"
       }
@@ -99,7 +100,7 @@ export const designCases = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/43e9b.png",
+        "src": assetUrl("/assets/43e9b.png"),
         "alt": "VK HACKATHON (2025) — laptop mockup",
         "type": "image"
       }
@@ -109,7 +110,7 @@ export const designCases = [
       "tablet": "desktop-mockup",
       "mobile": "desktop-mockup"
     },
-    "laptopScreen": "/assets/732ac.png"
+    "laptopScreen": assetUrl("/assets/732ac.png")
   },
   {
     "id": "matematch",
@@ -134,12 +135,12 @@ export const designCases = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/86c2e.png",
+        "src": assetUrl("/assets/86c2e.png"),
         "alt": "MateMatch (2024) — first app screen in iPhone mockup",
         "type": "image"
       },
       {
-        "src": "/assets/43c89.png",
+        "src": assetUrl("/assets/43c89.png"),
         "alt": "MateMatch (2024) — second app screen in iPhone mockup",
         "type": "image"
       }
@@ -174,12 +175,12 @@ export const designCases = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/2a915.png",
+        "src": assetUrl("/assets/2a915.png"),
         "alt": "Vita (2024) — first app screen in iPhone mockup",
         "type": "image"
       },
       {
-        "src": "/assets/c6356.png",
+        "src": assetUrl("/assets/c6356.png"),
         "alt": "Vita (2024) — second app screen in iPhone mockup",
         "type": "image"
       }

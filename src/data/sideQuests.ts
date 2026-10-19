@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl'
 import type { PortfolioProject } from '../types/portfolio'
 // Current desktop text and media; explicit frame numbering defines slide order.
 export const sideQuests = [
@@ -15,15 +16,15 @@ export const sideQuests = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/76fdb.png",
+        "src": assetUrl("/assets/76fdb.png"),
         "alt": "Daria speaking at PiterUX in 2026",
         "type": "image"
       }
     ],
     "presentationVariant": "creative-showcase",
     "actionLabel": "VIEW ANNOUNCEMENT",
-    "actionCircle": "/assets/3db81.svg",
-    "paperArtwork": "/assets/a3e62.svg",
+    "actionCircle": assetUrl("/assets/3db81.svg"),
+    "paperArtwork": assetUrl("/assets/a3e62.svg"),
     "responsivePresentation": {
       "tablet": "creative-showcase",
       "mobile": "creative-showcase"
@@ -43,15 +44,15 @@ export const sideQuests = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/7dd33.png",
+        "src": assetUrl("/assets/7dd33.png"),
         "alt": "Daria speaking at PiterUX in 2025",
         "type": "image"
       }
     ],
     "presentationVariant": "creative-showcase",
     "actionLabel": "VIEW ANNOUNCEMENT",
-    "actionCircle": "/assets/3db81.svg",
-    "paperArtwork": "/assets/a3e62.svg",
+    "actionCircle": assetUrl("/assets/3db81.svg"),
+    "paperArtwork": assetUrl("/assets/a3e62.svg"),
     "responsivePresentation": {
       "tablet": "creative-showcase",
       "mobile": "creative-showcase"
@@ -64,7 +65,7 @@ export const sideQuests = [
     "slideOrder": "04.3",
     "title": "DJU",
     "previewLink": { "label": "VIEW PROJECT ON STEAM", "url": "https://store.steampowered.com/app/5259310/Dju/" },
-    "titleArtwork": "/assets/lettering-dju.svg",
+    "titleArtwork": assetUrl("/assets/lettering-dju.svg"),
     "category": "game-project",
     "previewDescription": [
       "A top-down pixel-art shooter set in a cyberpunk world. Play as a Chinese girl who uses magical masks inherited from her ancestors to rescue her father from a corporation",
@@ -78,15 +79,15 @@ export const sideQuests = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/ddd80.png",
+        "src": assetUrl("/assets/ddd80.png"),
         "alt": "DJU gameplay and dialogue interface",
         "type": "image"
       }
     ],
     "presentationVariant": "game-showcase",
     "actionLabel": "VIEW PROJECT ON STEAM",
-    "actionCircle": "/assets/3db81.svg",
-    "paperArtwork": "/assets/1413e.svg",
+    "actionCircle": assetUrl("/assets/3db81.svg"),
+    "paperArtwork": assetUrl("/assets/1413e.svg"),
     "responsivePresentation": {
       "tablet": "game-showcase",
       "mobile": "game-showcase"
@@ -111,14 +112,14 @@ export const sideQuests = [
     ],
     "previewMedia": [
       {
-        "src": "/assets/613dc.png",
+        "src": assetUrl("/assets/613dc.png"),
         "alt": "Moloch visual novel scene featuring Ernest in a car",
         "type": "image"
       }
     ],
     "presentationVariant": "game-showcase",
     "actionLabel": "COMING SOON ON STEAM",
-    "paperArtwork": "/assets/1413e.svg",
+    "paperArtwork": assetUrl("/assets/1413e.svg"),
     "responsivePresentation": {
       "tablet": "game-showcase",
       "mobile": "game-showcase"

@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl'
 import { useEffect, useRef, useState } from 'react'
 import { desktopPath, mobilePath, milestones, experienceAnnotations, experienceNotes } from '../data/experience'
 import { useMediaQuery } from '../hooks/useMediaQuery'
@@ -54,15 +55,15 @@ export function ExperienceSection({ active }: { active: boolean }) {
   }, [active, mobile, reduced])
   const selectedMarker = [...milestones, ...experienceAnnotations].find((item) => item.id === note)
   const selected = selectedMarker && { ...selectedMarker, ...experienceNotes[selectedMarker.id] }
-  return <div className="experience-content"><h2><span><img src="/assets/lettering-experience.svg" alt="" /><span className="sr-only">Experience</span></span></h2>
+  return <div className="experience-content"><h2><span><img src={assetUrl("/assets/lettering-experience.svg")} alt="" /><span className="sr-only">Experience</span></span></h2>
     <div className="constellation" ref={chart} onKeyDown={(event) => { if (event.key === 'Escape') setNote(null) }}>
       <svg viewBox={mobile ? '0 0 326 1428' : '0 0 1384 564'} aria-hidden="true" className="constellation-line"><path ref={path} d={mobile ? mobilePath : desktopPath} transform={mobile ? undefined : 'translate(0 136)'} fill="none" stroke="#d6576e" strokeWidth={mobile ? 1.5 : 2} /></svg>
       {milestones.map((milestone, index) => { const [x, y] = mobile ? milestone.mobile : milestone.desktop; return <div key={milestone.id} className={`milestone ${milestone.side} milestone-${milestone.id}`} data-milestone={index} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
-        <button ref={(element) => { markers.current[milestone.id] = element ?? undefined }} className="milestone-marker" aria-label={`Read ${milestone.title.replace('\n', ' ')}`} aria-expanded={note === milestone.id} aria-controls={note === milestone.id ? 'experience-note' : undefined} onMouseEnter={() => { if (!mobile && experienceNotes[milestone.id] && !pinnedNote.current) setNote(milestone.id) }} onClick={() => { pinnedNote.current = pinnedNote.current === milestone.id ? null : milestone.id; setNote(pinnedNote.current) }}><img src={milestone.id === 'future' ? '/assets/840f7.svg' : '/assets/5cc1f.svg'} alt="" /></button>
+        <button ref={(element) => { markers.current[milestone.id] = element ?? undefined }} className="milestone-marker" aria-label={`Read ${milestone.title.replace('\n', ' ')}`} aria-expanded={note === milestone.id} aria-controls={note === milestone.id ? 'experience-note' : undefined} onMouseEnter={() => { if (!mobile && experienceNotes[milestone.id] && !pinnedNote.current) setNote(milestone.id) }} onClick={() => { pinnedNote.current = pinnedNote.current === milestone.id ? null : milestone.id; setNote(pinnedNote.current) }}><img src={milestone.id === 'future' ? assetUrl('/assets/840f7.svg') : assetUrl('/assets/5cc1f.svg')} alt="" /></button>
         <span className="milestone-label">{milestone.title}</span>
       </div> })}
       {experienceAnnotations.map((item, index) => { const [x, y] = mobile ? item.mobile : item.desktop; return <div key={item.id} className={`experience-annotation annotation-${item.id}`} data-annotation={index} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
-        <button ref={(element) => { markers.current[item.id] = element ?? undefined }} className="secondary-star" aria-label={`Read ${item.title.replaceAll('\n', ' ')}`} aria-expanded={note === item.id} aria-controls={note === item.id ? 'experience-note' : undefined} onMouseEnter={() => { if (!mobile && !pinnedNote.current) setNote(item.id) }} onClick={() => { pinnedNote.current = pinnedNote.current === item.id ? null : item.id; setNote(pinnedNote.current) }}><img src="/assets/5cc1f.svg" alt="" /></button>
+        <button ref={(element) => { markers.current[item.id] = element ?? undefined }} className="secondary-star" aria-label={`Read ${item.title.replaceAll('\n', ' ')}`} aria-expanded={note === item.id} aria-controls={note === item.id ? 'experience-note' : undefined} onMouseEnter={() => { if (!mobile && !pinnedNote.current) setNote(item.id) }} onClick={() => { pinnedNote.current = pinnedNote.current === item.id ? null : item.id; setNote(pinnedNote.current) }}><img src={assetUrl("/assets/5cc1f.svg")} alt="" /></button>
         <span className="secondary-label">{item.title}</span>
       </div> })}
       {selected && active && <MilestoneNote milestone={selected} getAnchor={() => markers.current[selected.id]} onClose={() => { pinnedNote.current = null; setNote(null) }} />}
