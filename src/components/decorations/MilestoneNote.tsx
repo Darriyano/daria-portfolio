@@ -45,7 +45,6 @@ export function MilestoneNote({ milestone, getAnchor, onClose }: { milestone: Mi
     return () => { observer.disconnect(); anchorPosition.disconnect(); window.removeEventListener('resize', position); window.removeEventListener('scroll', position, true); window.removeEventListener('keydown', close); window.removeEventListener('pointerdown', outside, true) }
   }, [getAnchor, milestone.id, onClose])
   return createPortal(<aside ref={card} className="experience-note floating-note" id="experience-note" role="dialog" aria-label={`${milestone.title.replaceAll('\n', ' ')} details`}>
-    <button aria-label="Close milestone details" onClick={() => { onClose(); getAnchor()?.focus({ preventScroll: true }) }}>×</button>
     <div className="milestone-note-body" tabIndex={0} aria-label="Milestone note content">{milestone.noteHeading && <h3>{milestone.noteHeading}</h3>}<p>{milestone.details ?? milestone.title}</p></div>
   </aside>, document.body)
 }
