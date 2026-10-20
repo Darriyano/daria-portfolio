@@ -24,7 +24,7 @@ function MediaGallery({ items }: { items: ProjectMedia[] }) {
     {items.map((item, index) => <figure key={`${item.src}-${index}`}><Media media={item} /></figure>)}
   </div>
 }
-function ProjectPresentation({ project }: { project: PortfolioProject }) {
+export function ProjectPresentation({ project }: { project: PortfolioProject }) {
   const { media } = getProjectPreview(project)
   const { presentationVariant: variant } = project
   if (variant === 'mobile-mockups' || variant === 'single-mobile-mockup') return <div className={`project-media phones ${variant}${project.phoneScreens ? ' composed-mockups' : ''}`}>

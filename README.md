@@ -4,6 +4,10 @@ React + TypeScript + Vite, with plain CSS and no additional runtime dependencies
 
 Run `npm install` and `npm run dev` for local development. `npm run build` runs strict TypeScript checks and creates `dist/`; `npm run lint` checks source code.
 
+## Project galleries and dedicated URLs
+
+The current gallery, project metadata, chapter configuration, static routing, local previews and checks are documented in [docs/project-pages.md](docs/project-pages.md). Its instructions supersede the legacy carousel editing and verification notes below.
+
 ## Editing portfolio content
 
 1. Add a Design Case to `src/data/designCases.ts` or a Side Quest to `src/data/sideQuests.ts`. Each entry needs a unique `id`, `title`, `category`, `contributions`, `media`, and `presentationVariant`.

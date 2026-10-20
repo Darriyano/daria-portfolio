@@ -11,7 +11,7 @@ export function MilestoneNote({ milestone, getAnchor, onClose }: { milestone: Mi
     const position = () => {
       const star = anchor.getBoundingClientRect()
       const { width, height } = element.getBoundingClientRect()
-      const margin = 20, gap = 18
+      const margin = 20, gap = 8
       let left = star.left + star.width / 2 - width / 2
       let top = star.top - height - gap
       let placement = 'above'
@@ -28,8 +28,8 @@ export function MilestoneNote({ milestone, getAnchor, onClose }: { milestone: Mi
     const outside = (event: PointerEvent) => {
       const target = event.target
       if (!(target instanceof Node) || element.contains(target)) return
-      // Stars handle switching notes themselves; capture runs before their click.
-      if (target instanceof Element && target.closest('.milestone-marker,.secondary-star')) return
+      // Clicking a hovered star or label must not dismiss its hover note.
+      if (target instanceof Element && target.closest('.milestone,.experience-annotation')) return
       onClose()
     }
     position()

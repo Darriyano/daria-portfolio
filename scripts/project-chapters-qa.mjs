@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict'
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ?? 'playwright')
+const browser = await chromium.launch({ channel: 'chrome', headless: true })
+const page = await browser.newPage()
+try {
+  await page.goto('http://127.0.0.1:5173/')
+  await page.evaluate(async () => { const fixture = await import('/scripts/project-chapter-fixture.tsx'); fixture.render() })
+  const fixture = page.locator('#chapter-fixture')
+  const previous = fixture.getByRole('button', { name: 'Previous chapter' })
+  const next = fixture.getByRole('button', { name: 'Next chapter' })
+  await fixture.locator('output').waitFor()
+  assert.equal(await fixture.locator('output').textContent(), '1/3')
+  assert(await previous.isDisabled())
+  await next.focus(); await page.keyboard.press('Enter')
+  assert.equal(await fixture.locator('output').textContent(), '2/3')
+  assert.equal(await fixture.locator('[data-testid="fixture-chapter"]').textContent(), 'Chapter 2')
+  await page.keyboard.press('Enter')
+  assert.equal(await fixture.locator('output').textContent(), '3/3'); assert(await next.isDisabled())
+  await previous.click(); assert.equal(await fixture.locator('output').textContent(), '2/3')
+  await fixture.getByRole('button', { name: 'Single chapter' }).click()
+  assert.equal(await fixture.locator('.project-chapter-navigation').count(), 0)
+  console.log('PASS: multiple chapters show accurate controls, keyboard activation, no looping, disabled endpoints; a single chapter hides arrows and counter')
+} finally { await browser.close() }

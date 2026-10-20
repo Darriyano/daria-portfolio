@@ -13,7 +13,6 @@ export function ExperienceSection({ active }: { active: boolean }) {
   const progress = useRef({ desktop: 0, mobile: 0 })
   const [note, setNote] = useState<string | null>(null)
   const markers = useRef<Record<string, HTMLButtonElement | undefined>>({})
-  const pinnedNote = useRef<string | null>(null)
   useEffect(() => {
     const element = chart.current, line = path.current
     if (!element || !line) return
@@ -51,22 +50,30 @@ export function ExperienceSection({ active }: { active: boolean }) {
     const initial = progress.current.desktop, start = performance.now()
     const tick = (now: number) => { const value = Math.min(1, initial + (now - start) / 3200); paint(value); if (value < 1) frame = requestAnimationFrame(tick) }
     frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
+    const section = element.closest('section')
+    const skip = (event: MouseEvent) => {
+      if (!matchMedia('(hover: hover) and (pointer: fine)').matches || event.button !== 0 || event.detail === 0) return
+      if (!(event.target instanceof Element) || event.target.closest('button,a,input,textarea,select,.milestone,.experience-annotation,.experience-note')) return
+      cancelAnimationFrame(frame)
+      paint(1)
+    }
+    section?.addEventListener('click', skip)
+    return () => { cancelAnimationFrame(frame); section?.removeEventListener('click', skip) }
   }, [active, mobile, reduced])
   const selectedMarker = [...milestones, ...experienceAnnotations].find((item) => item.id === note)
   const selected = selectedMarker && { ...selectedMarker, ...experienceNotes[selectedMarker.id] }
   return <div className="experience-content"><h2><span><img src={assetUrl("/assets/lettering-experience.svg")} alt="" /><span className="sr-only">Experience</span></span></h2>
     <div className="constellation" ref={chart} onKeyDown={(event) => { if (event.key === 'Escape') setNote(null) }}>
       <svg viewBox={mobile ? '0 0 326 1428' : '0 0 1384 564'} aria-hidden="true" className="constellation-line"><path ref={path} d={mobile ? mobilePath : desktopPath} transform={mobile ? undefined : 'translate(0 136)'} fill="none" stroke="#d6576e" strokeWidth={mobile ? 1.5 : 2} /></svg>
-      {milestones.map((milestone, index) => { const [x, y] = mobile ? milestone.mobile : milestone.desktop; return <div key={milestone.id} className={`milestone ${milestone.side} milestone-${milestone.id}`} data-milestone={index} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
-        <button ref={(element) => { markers.current[milestone.id] = element ?? undefined }} className="milestone-marker" aria-label={`Read ${milestone.title.replace('\n', ' ')}`} aria-expanded={note === milestone.id} aria-controls={note === milestone.id ? 'experience-note' : undefined} onMouseEnter={() => { if (!mobile && experienceNotes[milestone.id] && !pinnedNote.current) setNote(milestone.id) }} onClick={() => { pinnedNote.current = pinnedNote.current === milestone.id ? null : milestone.id; setNote(pinnedNote.current) }}><img src={milestone.id === 'future' ? assetUrl('/assets/840f7.svg') : assetUrl('/assets/5cc1f.svg')} alt="" /></button>
+      {milestones.map((milestone, index) => { const [x, y] = mobile ? milestone.mobile : milestone.desktop; return <div key={milestone.id} className={`milestone ${milestone.side} milestone-${milestone.id}`} data-milestone={index} onPointerEnter={(event) => { if (event.pointerType !== 'touch' && experienceNotes[milestone.id]) setNote(milestone.id) }} onPointerLeave={() => setNote(null)} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
+        <button ref={(element) => { markers.current[milestone.id] = element ?? undefined }} className="milestone-marker" aria-label={`Read ${milestone.title.replace('\n', ' ')}`} aria-expanded={note === milestone.id} aria-controls={note === milestone.id ? 'experience-note' : undefined}><img src={milestone.id === 'future' ? assetUrl('/assets/840f7.svg') : assetUrl('/assets/5cc1f.svg')} alt="" /></button>
         <span className="milestone-label">{milestone.title}</span>
       </div> })}
-      {experienceAnnotations.map((item, index) => { const [x, y] = mobile ? item.mobile : item.desktop; return <div key={item.id} className={`experience-annotation annotation-${item.id}`} data-annotation={index} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
-        <button ref={(element) => { markers.current[item.id] = element ?? undefined }} className="secondary-star" aria-label={`Read ${item.title.replaceAll('\n', ' ')}`} aria-expanded={note === item.id} aria-controls={note === item.id ? 'experience-note' : undefined} onMouseEnter={() => { if (!mobile && !pinnedNote.current) setNote(item.id) }} onClick={() => { pinnedNote.current = pinnedNote.current === item.id ? null : item.id; setNote(pinnedNote.current) }}><img src={assetUrl("/assets/5cc1f.svg")} alt="" /></button>
+      {experienceAnnotations.map((item, index) => { const [x, y] = mobile ? item.mobile : item.desktop; return <div key={item.id} className={`experience-annotation annotation-${item.id}`} data-annotation={index} onPointerEnter={(event) => { if (event.pointerType !== 'touch') setNote(item.id) }} onPointerLeave={() => setNote(null)} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
+        <button ref={(element) => { markers.current[item.id] = element ?? undefined }} className="secondary-star" aria-label={`Read ${item.title.replaceAll('\n', ' ')}`} aria-expanded={note === item.id} aria-controls={note === item.id ? 'experience-note' : undefined}><img src={assetUrl("/assets/5cc1f.svg")} alt="" /></button>
         <span className="secondary-label">{item.title}</span>
       </div> })}
-      {selected && active && <MilestoneNote milestone={selected} getAnchor={() => markers.current[selected.id]} onClose={() => { pinnedNote.current = null; setNote(null) }} />}
+      {selected && active && <MilestoneNote milestone={selected} getAnchor={() => markers.current[selected.id]} onClose={() => setNote(null)} />}
     </div>
   </div>
 }

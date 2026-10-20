@@ -1,0 +1,314 @@
+[
+  {
+    "id": "allforms",
+    "slug": "allforms",
+    "category": "case",
+    "title": "AllForms",
+    "year": "2026",
+    "tags": [
+      "Commercial",
+      "Product",
+      "Research"
+    ],
+    "preview": "/assets/allforms-preview.jpg",
+    "previewAlt": "AllForms — poll results on a laptop",
+    "galleryNodeId": "273:3859",
+    "previewNodeId": "273:4224",
+    "previewLayer": "allforms 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "160:2746"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "AllForms (2026)"
+  },
+  {
+    "id": "bachelor-thesis",
+    "slug": "bachelor-thesis",
+    "category": "case",
+    "title": "Bachelor Thesis",
+    "year": "2026–27",
+    "tags": [
+      "AI",
+      "Science",
+      "UserExperience"
+    ],
+    "preview": "/assets/thesis-preview.jpg",
+    "previewAlt": "Bachelor Thesis — research manuscript and literature review",
+    "galleryNodeId": "273:3875",
+    "previewNodeId": "273:4226",
+    "previewLayer": "thesis 1",
+    "status": "ongoing",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "276:4252"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "Bachelor Thesis (2026–27)"
+  },
+  {
+    "id": "minigarden",
+    "slug": "minigarden",
+    "category": "case",
+    "title": "MiniGarden",
+    "year": "2025",
+    "tags": [
+      "UX/UI",
+      "Mobile",
+      "AI"
+    ],
+    "preview": "/assets/minigarden-preview.jpg",
+    "previewAlt": "MiniGarden — gardening community app screens",
+    "galleryNodeId": "273:3890",
+    "previewNodeId": "273:4219",
+    "previewLayer": "garden 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "160:2554"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "MiniGarden (2025)"
+  },
+  {
+    "id": "matematch",
+    "slug": "matematch",
+    "category": "case",
+    "title": "MateMatch",
+    "year": "2024",
+    "tags": [
+      "UX/UI",
+      "Mobile",
+      "Research"
+    ],
+    "preview": "/assets/matematch-preview.jpg",
+    "previewAlt": "MateMatch — roommate matching app screens",
+    "galleryNodeId": "273:3906",
+    "previewNodeId": "273:4221",
+    "previewLayer": "mate 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "224:813"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "MateMatch (2024)"
+  },
+  {
+    "id": "vk-hackathon",
+    "slug": "vk-hackathon",
+    "category": "case",
+    "title": "VK Hackathon",
+    "year": "2024",
+    "tags": [
+      "Frontend",
+      "Design",
+      "Product"
+    ],
+    "preview": "/assets/vk-hackathon-preview.jpg",
+    "previewAlt": "VK Hackathon — employee skills platform",
+    "galleryNodeId": "273:3922",
+    "previewNodeId": "273:4225",
+    "previewLayer": "hack 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "224:921"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "VK Hackathon (2024)"
+  },
+  {
+    "id": "vita",
+    "slug": "vita",
+    "category": "case",
+    "title": "Vita",
+    "year": "2024",
+    "tags": [
+      "UX/UI",
+      "Mobile",
+      "AI"
+    ],
+    "preview": "/assets/vita-preview.jpg",
+    "previewAlt": "Vita — health tracking app screens",
+    "galleryNodeId": "273:3938",
+    "previewNodeId": "273:4223",
+    "previewLayer": "vita 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "224:985"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "Vita (2024)"
+  },
+  {
+    "id": "piterux-2026",
+    "slug": "piterux-2026",
+    "category": "quest",
+    "title": "PiterUX",
+    "year": "2026",
+    "tags": [
+      "PersonalBrand",
+      "Speaker",
+      "Design"
+    ],
+    "preview": "/assets/piterux-2026-preview.jpg",
+    "previewAlt": "PiterUX — Daria speaking at PiterUX 2026",
+    "galleryNodeId": "265:2367",
+    "previewNodeId": "276:4251",
+    "previewLayer": "piter26 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "221:636"
+      }
+    ],
+    "externalLinks": [
+      {
+        "label": "VIEW ANNOUNCEMENT",
+        "url": "https://piterjs.org/#!meetup=qw0wg0_et0kmq/speech=1ez9nz_4omv0y"
+      }
+    ],
+    "detailTitle": "PiterUX 2026"
+  },
+  {
+    "id": "dju",
+    "slug": "dju",
+    "category": "quest",
+    "title": "DJU",
+    "year": "2026",
+    "tags": [
+      "GameDev",
+      "2D",
+      "Pixel"
+    ],
+    "preview": "/assets/gallery-dju-preview.jpg",
+    "previewAlt": "DJU — pixel art gameplay and dialogue",
+    "galleryNodeId": "265:2244",
+    "previewNodeId": "276:4233",
+    "previewLayer": "dju 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "160:2926"
+      }
+    ],
+    "externalLinks": [
+      {
+        "label": "VIEW PROJECT ON STEAM",
+        "url": "https://store.steampowered.com/app/5259310/Dju/"
+      }
+    ],
+    "detailTitle": "DJU"
+  },
+  {
+    "id": "novel",
+    "slug": "novel",
+    "category": "quest",
+    "title": "Moloch",
+    "year": "2026–2027",
+    "tags": [
+      "GameDev",
+      "2D",
+      "VisualNovel"
+    ],
+    "preview": "/assets/novel-preview.jpg",
+    "previewAlt": "Moloch — visual novel scene with Ernest",
+    "galleryNodeId": "265:2260",
+    "previewNodeId": "276:4235",
+    "previewLayer": "novel 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "221:677"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "Moloch"
+  },
+  {
+    "id": "piterux-2025",
+    "slug": "piterux-2025",
+    "category": "quest",
+    "title": "PiterUX",
+    "year": "2025",
+    "tags": [
+      "PersonalBrand",
+      "Speaker",
+      "Design"
+    ],
+    "preview": "/assets/piterux-2025-preview.jpg",
+    "previewAlt": "PiterUX — Daria speaking at PiterUX 2025",
+    "galleryNodeId": "265:2274",
+    "previewNodeId": "276:4250",
+    "previewLayer": "piter25 1",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "160:2999"
+      }
+    ],
+    "externalLinks": [
+      {
+        "label": "VIEW ANNOUNCEMENT",
+        "url": "https://piterjs.org/#!meetup=v8gjsg_jet70w/speech=3vfijv_osr98s"
+      }
+    ],
+    "detailTitle": "PiterUX 2025"
+  },
+  {
+    "id": "hackathon",
+    "slug": "hackathon",
+    "category": "quest",
+    "title": "Hackathons",
+    "year": "2023–24",
+    "tags": [
+      "Frontend",
+      "Design",
+      "Product"
+    ],
+    "preview": "/assets/hackathon-preview.jpg",
+    "previewAlt": "Hackathons — hackathon team with award certificate",
+    "galleryNodeId": "265:2290",
+    "previewNodeId": "276:4234",
+    "previewLayer": "hack 2 (quest)",
+    "status": "available",
+    "chapters": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "sourceNodeId": "264:2136"
+      }
+    ],
+    "externalLinks": [],
+    "detailTitle": "Hackathons (2023–24)"
+  }
+]

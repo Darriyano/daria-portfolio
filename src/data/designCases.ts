@@ -1,5 +1,6 @@
 import { assetUrl } from '../utils/assetUrl'
 import type { PortfolioProject } from '../types/portfolio'
+
 // Current desktop text and media; explicit frame numbering defines slide order.
 export const designCases = [
   {
@@ -12,15 +13,15 @@ export const designCases = [
     "contributions": [
       {
         "label": "The brief",
-        "text": "An internal work project to replace external services such as AhaSlides with in-house corporate tools"
+        "text": "An internal corporate product created to replace external services such as AhaSlides with an in-house solution tailored to company needs"
       },
       {
         "label": "My approach",
-        "text": "I conducted 10 interviews with teams across the company to understand their needs, then designed a solution using the existing UI kit within the platform’s constraints"
+        "text": "I conducted 10 interviews with teams across the company to identify recurring needs, workflows and constraints, then translated the findings into a solution built around the platform’s existing UI kit"
       },
       {
         "label": "What I delivered",
-        "text": "User research and Figma prototypes based on the Ant Design UI kit. Worked with Figma tokens, skins for different companies. Observed all corner cases, adaptive versions. Fully prepared for production"
+        "text": "Research synthesis and production-ready Figma prototypes based on Ant Design, including design tokens, company-specific themes, responsive states and edge cases"
       }
     ],
     "previewMedia": [
@@ -47,15 +48,15 @@ export const designCases = [
     "contributions": [
       {
         "label": "The brief",
-        "text": "A brief from a Russian startup: design a mobile app that brings together gardeners across the country"
+        "text": "A brief from a Russian startup to design a mobile product that brings gardeners together in one community and helps them exchange knowledge and experience"
       },
       {
         "label": "My approach",
-        "text": "I researched the target audience and their needs, explored similar products and best practices, and built a moodboard before designing the key screens"
+        "text": "I researched the target audience and their needs, reviewed competing and adjacent products, and used those findings to define the visual direction and key user flows before prototyping"
       },
       {
         "label": "What I delivered",
-        "text": "Light and dark logo versions, Figma design tokens, and a local design system ready for development"
+        "text": "Key mobile flows, light and dark logo versions, Figma design tokens and a reusable local design system prepared for development"
       }
     ],
     "previewMedia": [
@@ -87,15 +88,15 @@ export const designCases = [
     "contributions": [
       {
         "label": "The brief",
-        "text": "A brief from VKontakte: design a platform for IT specialists to track and assess employees’ skills and social interactions"
+        "text": "A brief from VKontakte to design a platform for IT teams to track employees’ skills, professional development and social interactions"
       },
       {
         "label": "My approach",
-        "text": "I clarified the concept and designed the interface in 3–4 hours, using VK’s existing components, colours and typography"
+        "text": "Working within a 3–4 hour design window, I clarified the product concept, prioritised the core flows and built the interface using VK’s existing components, typography and visual language"
       },
       {
         "label": "What I delivered",
-        "text": "I designed all key app screens and built a React app from them. Our team took third place"
+        "text": "I designed the key product flows and screens and implemented them as a React prototype. Our team finished in third place"
       }
     ],
     "previewMedia": [
@@ -110,7 +111,7 @@ export const designCases = [
       "tablet": "desktop-mockup",
       "mobile": "desktop-mockup"
     },
-    "laptopScreen": assetUrl("/assets/732ac.png")
+    "laptopScreen": assetUrl("/assets/vk-hackathon-screen.png")
   },
   {
     "id": "matematch",
@@ -122,15 +123,15 @@ export const designCases = [
     "contributions": [
       {
         "label": "The brief",
-        "text": "A concept to help students find compatible roommates at university and beyond — like Tinder for colleges and universities"
+        "text": "A mobile product concept designed to help university students find compatible roommates based on preferences and lifestyle — a matching experience inspired by dating apps"
       },
       {
         "label": "My approach",
-        "text": "I created a shared moodboard, explored similar products and best practices, and used those insights to develop prototypes"
+        "text": "I explored roommate-matching and social products, analysed common interaction patterns, developed a shared visual direction and translated the concept into the core matching and profile flows"
       },
       {
         "label": "What I delivered",
-        "text": "Figma prototypes and components covering all visual states"
+        "text": "Interactive Figma prototypes and reusable components covering the key states of the matching and profile experience"
       }
     ],
     "previewMedia": [
@@ -162,15 +163,15 @@ export const designCases = [
     "contributions": [
       {
         "label": "The brief",
-        "text": "A brief from a small university startup: design a tracking app with an AI assistant"
+        "text": "A brief from a small university startup to design a mobile tracking app with an integrated AI assistant"
       },
       {
         "label": "My approach",
-        "text": "I created a shared moodboard, explored similar products and best practices, and used those insights to develop prototypes"
+        "text": "I explored existing tracking and AI-assisted products, analysed common interaction patterns and used those insights to define the visual direction and core mobile flows"
       },
       {
         "label": "What I delivered",
-        "text": "Figma prototypes, components covering all visual states, and a distinctive visual style and patterns"
+        "text": "Figma prototypes, reusable components covering the main interface states, and a distinctive visual language spanning both the tracking and AI-assistant experiences"
       }
     ],
     "previewMedia": [
