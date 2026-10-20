@@ -245,3 +245,9 @@
   .project-copy { flex: none; }
   .contributions, .contribution, .project-description-group { flex-shrink: 0; }
 }
+
+@media (min-width:1024px) and (hover:hover) and (pointer:fine) {
+  .constellation .milestone-label, .constellation .secondary-label { cursor: pointer; }
+  .milestone:hover > .milestone-marker { transform: scale(1.15); }
+  .constellation .experience-annotation:hover > .secondary-star { transform: scale(1.1); }
+}

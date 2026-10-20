@@ -1,17 +1,35 @@
 import { assetUrl } from '../utils/assetUrl'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { desktopPath, mobilePath, milestones, experienceAnnotations, experienceNotes } from '../data/experience'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 import { MilestoneNote } from '../components/decorations/MilestoneNote'
 import { useAnnotationSpacing } from '../hooks/useAnnotationSpacing'
 export function ExperienceSection({ active }: { active: boolean }) {
   const mobile = useMediaQuery('(max-width: 1023px)')
+  const mobileNoteToggle = useMediaQuery('(max-width: 600px)')
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)')
   const chart = useRef<HTMLDivElement>(null)
   const path = useRef<SVGPathElement>(null)
   useAnnotationSpacing(chart, path, mobile)
   const progress = useRef({ desktop: 0, mobile: 0 })
   const [note, setNote] = useState<string | null>(null)
+  const activateNote = (id: string) => {
+    setNote(current => mobileNoteToggle && current === id ? null : id)
+  }
+  const labelInteraction = (id: string, title: string) => mobileNoteToggle ? {
+    role: 'button' as const,
+    tabIndex: 0,
+    'aria-label': `Read ${title.replaceAll('\n', ' ')}`,
+    'aria-expanded': note === id,
+    'aria-controls': note === id ? 'experience-note' : undefined,
+    onClick: () => activateNote(id),
+    onKeyDown: (event: KeyboardEvent<HTMLSpanElement>) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        activateNote(id)
+      }
+    },
+  } : {}
   const markers = useRef<Record<string, HTMLButtonElement | undefined>>({})
   useEffect(() => {
     const element = chart.current, line = path.current
@@ -65,13 +83,13 @@ export function ExperienceSection({ active }: { active: boolean }) {
   return <div className="experience-content"><h2><span><img src={assetUrl("/assets/lettering-experience.svg")} alt="" /><span className="sr-only">Experience</span></span></h2>
     <div className="constellation" ref={chart} onKeyDown={(event) => { if (event.key === 'Escape') setNote(null) }}>
       <svg viewBox={mobile ? '0 0 326 1428' : '0 0 1384 564'} aria-hidden="true" className="constellation-line"><path ref={path} d={mobile ? mobilePath : desktopPath} transform={mobile ? undefined : 'translate(0 136)'} fill="none" stroke="#d6576e" strokeWidth={mobile ? 1.5 : 2} /></svg>
-      {milestones.map((milestone, index) => { const [x, y] = mobile ? milestone.mobile : milestone.desktop; return <div key={milestone.id} className={`milestone ${milestone.side} milestone-${milestone.id}`} data-milestone={index} onPointerEnter={(event) => { if (event.pointerType !== 'touch' && experienceNotes[milestone.id]) setNote(milestone.id) }} onPointerLeave={(event) => { if (event.pointerType !== 'touch') setNote(null) }} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
-        <button ref={(element) => { markers.current[milestone.id] = element ?? undefined }} className="milestone-marker" onClick={() => { if (experienceNotes[milestone.id]) setNote(milestone.id) }} aria-label={`Read ${milestone.title.replace('\n', ' ')}`} aria-expanded={note === milestone.id} aria-controls={note === milestone.id ? 'experience-note' : undefined}><img src={milestone.id === 'future' ? assetUrl('/assets/840f7.svg') : assetUrl('/assets/5cc1f.svg')} alt="" /></button>
-        <span className="milestone-label">{milestone.title}</span>
+      {milestones.map((milestone, index) => { const [x, y] = mobile ? milestone.mobile : milestone.desktop; return <div key={milestone.id} className={`milestone ${milestone.side} milestone-${milestone.id}`} data-milestone={index} onPointerEnter={(event) => { if (!mobileNoteToggle && event.pointerType !== 'touch' && experienceNotes[milestone.id]) setNote(milestone.id) }} onPointerLeave={(event) => { if (!mobileNoteToggle && event.pointerType !== 'touch') setNote(null) }} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
+        <button ref={(element) => { markers.current[milestone.id] = element ?? undefined }} className="milestone-marker" onClick={() => { if (experienceNotes[milestone.id]) activateNote(milestone.id) }} aria-label={`Read ${milestone.title.replace('\n', ' ')}`} aria-expanded={note === milestone.id} aria-controls={note === milestone.id ? 'experience-note' : undefined}><img src={milestone.id === 'future' ? assetUrl('/assets/840f7.svg') : assetUrl('/assets/5cc1f.svg')} alt="" /></button>
+        <span className="milestone-label" {...labelInteraction(milestone.id, milestone.title)}>{milestone.title}</span>
       </div> })}
-      {experienceAnnotations.map((item, index) => { const [x, y] = mobile ? item.mobile : item.desktop; return <div key={item.id} className={`experience-annotation annotation-${item.id}`} data-annotation={index} onPointerEnter={(event) => { if (event.pointerType !== 'touch') setNote(item.id) }} onPointerLeave={(event) => { if (event.pointerType !== 'touch') setNote(null) }} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
-        <button ref={(element) => { markers.current[item.id] = element ?? undefined }} className="secondary-star" onClick={() => setNote(item.id)} aria-label={`Read ${item.title.replaceAll('\n', ' ')}`} aria-expanded={note === item.id} aria-controls={note === item.id ? 'experience-note' : undefined}><img src={assetUrl("/assets/5cc1f.svg")} alt="" /></button>
-        <span className="secondary-label">{item.title}</span>
+      {experienceAnnotations.map((item, index) => { const [x, y] = mobile ? item.mobile : item.desktop; return <div key={item.id} className={`experience-annotation annotation-${item.id}`} data-annotation={index} onPointerEnter={(event) => { if (!mobileNoteToggle && event.pointerType !== 'touch') setNote(item.id) }} onPointerLeave={(event) => { if (!mobileNoteToggle && event.pointerType !== 'touch') setNote(null) }} style={{ left: `${x / (mobile ? 326 : 1384) * 100}%`, top: `${y / (mobile ? 1428 : 564) * 100}%` }}>
+        <button ref={(element) => { markers.current[item.id] = element ?? undefined }} className="secondary-star" onClick={() => activateNote(item.id)} aria-label={`Read ${item.title.replaceAll('\n', ' ')}`} aria-expanded={note === item.id} aria-controls={note === item.id ? 'experience-note' : undefined}><img src={assetUrl("/assets/5cc1f.svg")} alt="" /></button>
+        <span className="secondary-label" {...labelInteraction(item.id, item.title)}>{item.title}</span>
       </div> })}
       {selected && active && <MilestoneNote milestone={selected} getAnchor={() => markers.current[selected.id]} onClose={() => setNote(null)} />}
     </div>
