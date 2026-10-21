@@ -1,6 +1,25 @@
 /* Project-only styles keep the existing Hero, Experience and Contacts intact. */
 .portfolio-home[hidden] { display: none; }
 .project-gallery { width: 100%; }
+/* Lift each complete group without changing its reserved layout space or
+   section boundaries. Stop below the fixed header (40px + 64px) with 8px air. */
+@media (min-width:1024px) {
+  .section-design-cases, .section-side-quests { --content-top: var(--section-top); }
+  .section-contacts { --content-top: 168px; }
+  :is(.section-design-cases, .section-side-quests, .section-contacts) > .section-inner {
+    position: relative;
+    top: max(calc(var(--content-top) / -2), calc(112px - var(--content-top)));
+  }
+}
+@media (min-width:1024px) and (max-width:1199px) and (orientation:portrait) {
+  .section-design-cases, .section-side-quests { --content-top: 144px; }
+}
+@media (min-width:1200px) and (max-height:850px) {
+  .section-design-cases, .section-side-quests { --content-top: 130px; }
+}
+@media (min-width:1200px) and (min-height:851px) {
+  .section-design-cases, .section-side-quests { --content-top: 144px; }
+}
 .project-gallery h2 { margin: 0 0 40px; font-size: clamp(40px,4.76vw,72px); }
 .project-gallery-grid { display: grid; grid-template-columns: repeat(3,minmax(0,420px)); justify-content: space-between; gap: 40px 32px; }
 .project-preview-card { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; padding: 20px; min-width: 0; aspect-ratio: 420/300; color: #33252c; transition: transform .18s ease; }
@@ -177,5 +196,32 @@
     left: var(--composition-left,0px);
     transform-origin: top left;
     transform: scale(var(--composition-scale,1));
+  }
+}
+
+@media (min-width:1601px) {
+  /* Reuse the detail page's mobile pair geometry in the desktop visual column.
+     Clip vertically at the gradient's bottom, but let the viewport own the
+     horizontal crop instead of the narrower grid cell. */
+  .project-detail.design > .project-content.mobile-mockups > .phones.composed-mockups {
+    overflow: visible;
+    clip-path: inset(-144px -100vw -64px -100vw);
+  }
+  .project-detail.design .mobile-mockups > .composed-mockups .phone {
+    width: 34%;
+  }
+  .project-detail.design .mobile-mockups > .composed-mockups .phone-one {
+    left: 10%;
+    top: 148px;
+  }
+  .project-detail.design .mobile-mockups > .composed-mockups .phone-two {
+    left: 55%;
+    top: 72px;
+  }
+}
+
+@media (min-width:1200px) and (prefers-reduced-motion:no-preference) {
+  .project-detail.design .mobile-mockups > .composed-mockups .phone {
+    transition: width .3s ease, left .3s ease, top .3s ease;
   }
 }

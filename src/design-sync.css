@@ -208,6 +208,14 @@
 /* Keep both Hero actions comfortably tappable at every layout size. */
 .hero-actions > a { display: inline-flex; align-items: center; min-height: 44px; }
 
+/* Short desktop windows need less whitespace, not smaller type. The section
+   keeps its content-driven height so very short windows can still scroll. */
+@media (min-width: 1024px) and (max-height: 850px) and (orientation: landscape) {
+  .section-main { padding-top: clamp(128px, calc(100svh - 656px), 184px); }
+  .section-main .hero-description { margin-top: clamp(24px, calc(100svh - 760px), 64px); }
+  .section-main .hero-actions { padding-top: clamp(24px, calc(100svh - 764px), 60px); }
+}
+
 /* Compact mobile actions and a content-aware Contacts footer. */
 @media (max-width: 1023px) {
   .hero-actions {

@@ -251,3 +251,83 @@
   .milestone:hover > .milestone-marker { transform: scale(1.15); }
   .constellation .experience-annotation:hover > .secondary-star { transform: scale(1.1); }
 }
+
+/* The header keeps its original box in both states, so content never jumps. */
+.site-header {
+  border-radius: 24px;
+  transition: background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
+}
+.site-header.is-floating {
+  background: rgba(31, 23, 28, .9);
+  box-shadow: inset 0 0 0 1px #ffffff24, inset 0 1px 0 #ffffff12, 0 8px 24px #0002;
+}
+@supports ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
+  .site-header.is-floating {
+    background: rgba(31, 23, 28, .72);
+    -webkit-backdrop-filter: blur(20px) saturate(125%);
+    backdrop-filter: blur(20px) saturate(125%);
+  }
+}
+@media (max-width:1023px) {
+  .site-header.is-floating { background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .site-header.is-floating .menu-toggle, .site-header.is-floating nav.is-open {
+    background: #24181deb;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+}
+.constellation .milestone-label, .constellation .secondary-label { cursor: pointer; }
+.constellation-hit-bridge { display: none; }
+@media (min-width:1024px) {
+  .milestone-industrial .milestone-label { top: calc(-2lh - 8px); left: 34px; text-align: left; }
+  /* These hit regions join the visible targets without moving either one. */
+  .constellation-hit-bridge { display: block; position: absolute; cursor: pointer; left: -20px; top: 0; width: 46px; height: 48px; }
+  .milestone-bachelor .constellation-hit-bridge { left: 0; top: -20px; width: 44px; height: 40px; }
+  .milestone-industrial .constellation-hit-bridge { left: 0; top: -40px; width: 44px; height: 66px; }
+  .constellation .milestone-marker, .constellation .secondary-star { z-index: 1; transition: transform .25s ease; }
+  .constellation .milestone-label { z-index: 1; }
+  .constellation .milestone-label, .constellation .secondary-label { transition: opacity .2s .12s, scale .25s ease; }
+  .constellation .milestone:is(:hover,:focus-within) > .milestone-marker { transform: scale(1.15); }
+  .constellation .experience-annotation:is(:hover,:focus-within) > .secondary-star { transform: scale(1.1); }
+  .constellation .milestone:is(:hover,:focus-within) > .milestone-label { scale: 1.03; }
+  .constellation .milestone-industrial > .milestone-label { transform-origin: left center; }
+  .constellation .experience-annotation:is(:hover,:focus-within) > .secondary-label { scale: 1.03; }
+}
+/* Separate filter animation from hover transforms and the fuse's pop animation.
+   Both groups share a clock; their lit windows never overlap. */
+@keyframes constellation-attention {
+  0%, 3%, 33%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  16% { filter: drop-shadow(0 0 7px #d6576e80); }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .milestone-industrial[data-revealed=true] .milestone-marker img,
+  .milestone-industrial[data-revealed=true] .milestone-label { animation: constellation-attention 12s ease-in-out infinite; }
+  .milestone-gamedev[data-revealed=true] .milestone-marker img,
+  .milestone-gamedev[data-revealed=true] .milestone-label { animation: constellation-attention 12s ease-in-out -6s infinite; }
+  .milestone:is(:hover,:focus-within) .milestone-marker img,
+  .milestone:is(:hover,:focus-within) .milestone-label { animation: none; filter: none; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .site-header, .constellation .milestone-marker, .constellation .secondary-star,
+  .constellation .milestone-label, .constellation .secondary-label { transition: none; }
+}
+
+/* Existing expanded state is the single source of truth for selection.
+   Keep selected targets at rest even while hovered or keyboard-focused. */
+@media (min-width:1024px) {
+  .constellation :is(.milestone,.experience-annotation):has(> [aria-expanded=true]) > :is(.milestone-marker,.secondary-star) {
+    transform: scale(1);
+    animation: none;
+    filter: drop-shadow(0 0 6px #ffaac680);
+  }
+  .constellation :is(.milestone,.experience-annotation):has(> [aria-expanded=true]) > :is(.milestone-label,.secondary-label) {
+    scale: 1;
+    animation: none;
+    filter: none;
+    text-shadow: 0 0 8px #ffaac666;
+  }
+  .constellation .milestone:has(> [aria-expanded=true]) .milestone-marker img {
+    animation: none;
+    filter: none;
+  }
+}

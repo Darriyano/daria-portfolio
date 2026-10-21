@@ -28,7 +28,7 @@ export function MilestoneNote({ milestone, getAnchor, onClose }: { milestone: Mi
     const outside = (event: PointerEvent) => {
       const target = event.target
       if (!(target instanceof Node) || element.contains(target)) return
-      // Clicking a hovered star or label must not dismiss its hover note.
+      // Triggers handle switching and toggling after this capture listener.
       if (target instanceof Element && target.closest('.milestone,.experience-annotation')) return
       onClose()
     }

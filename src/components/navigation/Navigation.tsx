@@ -3,7 +3,15 @@ import { useEffect, useRef, useState } from 'react'
 import { contacts, cvUrl } from '../../data/contacts'
 import { sectionIds } from '../../data/navigation'
 const labels = ['MAIN', 'EXPERIENCE', 'DESIGN CASES', 'SIDE QUESTS', 'CONTACTS']
-export function Navigation({ active, navigate }: { active: number; navigate: (index: number) => void }) {
+export function Navigation({ active, navigate, home }: { home: boolean; active: number; navigate: (index: number) => void }) {
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 24)
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 24)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [home])
+  const floating = !home || active !== 0 || scrolled
   const [open, setOpen] = useState(false)
   const toggle = useRef<HTMLButtonElement>(null), menu = useRef<HTMLElement>(null)
   useEffect(() => {
@@ -14,7 +22,7 @@ export function Navigation({ active, navigate }: { active: number; navigate: (in
     window.addEventListener('keydown', close); window.addEventListener('pointerdown', outside)
     return () => { window.removeEventListener('keydown', close); window.removeEventListener('pointerdown', outside) }
   }, [open])
-  return <header className="site-header">
+  return <header className={`site-header${floating ? ' is-floating' : ''}`}>
     <div className="social-links"><img src={assetUrl("/assets/627a4.svg")} alt="" />{[contacts[0], contacts[2], contacts[1]].map((contact) => <a key={contact.id} aria-label={contact.title} href={contact.url} target="_blank" rel="noreferrer" />)}</div>
     <button className="menu-toggle" ref={toggle} aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(!open)}>{open ? '×' : <img src={assetUrl("/assets/278c2.svg")} alt="" />}</button>
     <nav id="main-navigation" ref={menu} className={open ? 'is-open' : ''} aria-label="Main navigation">
