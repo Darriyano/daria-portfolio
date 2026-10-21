@@ -35,7 +35,7 @@ jobs:
       - name: Build and typecheck
         run: npm run build
         env:
-          DEPLOY_BASE_PATH: /daria-portfolio/
+          DEPLOY_BASE_PATH: /
       - name: Configure Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
       - name: Upload site
@@ -45,3 +45,12 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+      - name: Verify custom domain
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          domain="$(gh api "repos/${{ github.repository }}/pages" --jq '.cname')"
+          if [ "$domain" != "darriyano.lol" ]; then
+            echo "Expected Pages custom domain darriyano.lol, got: $domain"
+            exit 1
+          fi

@@ -153,21 +153,22 @@ The workflow in `.github/workflows/deploy.yml` builds with Node.js 24 and
 `npm ci`, checks lint and TypeScript, and deploys `dist` on pushes to `main`.
 In repository Settings → Pages, select **GitHub Actions** as the source.
 
-Temporary URL: https://darriyano.github.io/daria-portfolio/
+Production URL: https://darriyano.lol/
 
-The workflow sets `DEPLOY_BASE_PATH=/daria-portfolio/`. Public asset strings
+The workflow sets `DEPLOY_BASE_PATH=/`. Public asset strings
 use `assetUrl()`; Vite rewrites CSS and HTML asset references. Development
-continues to use `/`. To preview a project-path build locally:
+continues to use `/`. To preview the production build locally:
 
 ```sh
-DEPLOY_BASE_PATH=/daria-portfolio/ npm run build
-DEPLOY_BASE_PATH=/daria-portfolio/ npm run preview
+DEPLOY_BASE_PATH=/ npm run build
+node scripts/project-pages-server.mjs dist / 4173
 ```
 
-No custom domain is configured. After purchasing and verifying ownership of
-darriyano.xyz, change the workflow's `DEPLOY_BASE_PATH` to `/`, configure the
-domain in GitHub Pages settings, add the verified DNS records at the registrar,
-and enable HTTPS when GitHub makes it available.
+The custom domain `darriyano.lol` is configured in GitHub Pages settings.
+The workflow verifies that setting after deployment without changing it or DNS.
+With this GitHub Actions publishing method, a `CNAME` file is not required.
+Project pages retain their generated directory HTML entries for direct visits
+and refreshes under `/cases/` and `/quests/`.
 
 To publish later updates once origin is connected:
 

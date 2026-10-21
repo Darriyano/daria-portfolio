@@ -13,14 +13,14 @@ npm run build
 node scripts/project-pages-server.mjs dist / 4173
 ```
 
-To test the current GitHub Pages base:
+To test the production root-domain build:
 
 ```sh
-DEPLOY_BASE_PATH=/daria-portfolio/ npm run build
-node scripts/project-pages-server.mjs dist /daria-portfolio/ 4174
+DEPLOY_BASE_PATH=/ npm run build
+node scripts/project-pages-server.mjs dist / 4174
 ```
 
-Open http://localhost:4174/daria-portfolio/. Stop the server with Ctrl+C. For the future root domain use `DEPLOY_BASE_PATH=/`. The domain has not been connected.
+Open http://localhost:4174/. Stop the server with Ctrl+C. Production uses https://darriyano.lol/ with the same `/` base. The custom domain remains configured in GitHub Pages settings; the workflow verifies it after deployment.
 
 ## Content and chapters
 
@@ -48,9 +48,23 @@ Run `npm run lint` and `npm run build`. Browser checks require Playwright and an
 
 ```sh
 PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/project-pages-qa.mjs
-PORTFOLIO_URL=http://localhost:4174/daria-portfolio/ PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/project-pages-qa.mjs
+PORTFOLIO_URL=http://localhost:4174/ PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/project-pages-qa.mjs
 PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/project-chapters-qa.mjs
 ```
+
+For the root-domain migration check in Chromium and WebKit, serve the root build
+on port 4177 with `node scripts/project-pages-server.mjs dist / 4177`, then run:
+
+```sh
+PORTFOLIO_URL=http://127.0.0.1:4177/ PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/root-domain-qa.mjs
+```
+
+This checks all 11 generated entries, direct visits, refreshes, directory
+redirects, return links, all configured fonts, visible images, scripts and styles,
+and the absence of the old `/daria-portfolio/` resource prefix. The workflow
+checks the Pages custom-domain setting after deployment. GitHub Actions uses
+the repository setting rather than a `CNAME` file; see
+[GitHub's custom-domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
 The main check defaults to http://127.0.0.1:4173/ and requires the static server above. It covers 11 direct routes and refreshes, slashless redirects, gallery order/counts, correct navigation highlights, client navigation, history, gallery restoration, external destinations, hidden single-chapter controls, loaded assets and 10 portrait/landscape viewports (320×740 through 1512×982, including 844×390 and 1280×600). It also checks the existing mobile menu, Experience hover notes and Contacts. The chapter check uses the Vite server on port 5173 and a dev-only fixture for keyboard controls, counts and bounded endpoints. Fixture content never enters the production catalog or bundle.
 
