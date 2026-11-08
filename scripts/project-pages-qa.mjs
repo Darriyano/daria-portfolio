@@ -22,9 +22,9 @@ const highlight = async label => {
 }
 try {
   await page.goto(origin + '#design-cases'); await ready()
-  assert.equal(await page.locator('#design-cases .project-preview-card').count(), 6)
+  assert.equal(await page.locator('#design-cases .project-preview-card').count(), 5)
   assert.equal(await page.locator('#side-quests .project-preview-card').count(), 5)
-  assert.deepEqual(await page.locator('#design-cases .project-preview-card').evaluateAll(cards => cards.map(card => card.id)), ['allforms','bachelor-thesis','minigarden','matematch','vk-hackathon','vita'].map(id => 'project-' + id))
+  assert.deepEqual(await page.locator('#design-cases .project-preview-card').evaluateAll(cards => cards.map(card => card.id)), ['allforms','minigarden','matematch','vk-hackathon','vita'].map(id => 'project-' + id))
   await highlight('DESIGN CASES')
   const token = await page.evaluate(() => window.__qaPageToken = Math.random())
   await page.locator('#project-allforms').focus()
@@ -32,7 +32,7 @@ try {
   await page.locator('#project-allforms').press('Enter'); await page.locator('#project-detail h1').waitFor()
   assert.equal(await page.evaluate(() => window.__qaPageToken), token, 'Internal links retain the document')
   assert.equal(new URL(page.url()).pathname, new URL(origin + 'cases/allforms/').pathname)
-  await highlight('DESIGN CASES')
+  assert.equal(await page.locator('.site-header').count(), 0, 'Project pages omit global navigation')
   await page.goBack(); await page.locator('#design-cases').waitFor()
   assert(Math.abs(await page.evaluate(() => scrollY) - galleryY) < 3, 'Browser Back restores scroll')
   assert.equal(await page.evaluate(() => document.activeElement.id), 'project-allforms', 'Browser Back restores card focus')
@@ -46,14 +46,13 @@ try {
     const slashless = await page.request.get(origin + path(project).replace(/\/$/, ''), { maxRedirects: 0 })
     assert.equal(slashless.status(), 301, 'Static host normalizes directory routes')
     await page.locator('#project-detail h1').waitFor(); await ready(); await images()
-    await highlight(project.category === 'case' ? 'DESIGN CASES' : 'SIDE QUESTS')
+    assert.equal(await page.locator('.site-header').count(), 0, 'Project pages omit global navigation')
     assert.equal(await page.locator('.project-chapter-navigation').count(), 0, 'Single-chapter navigation is hidden')
     assert((await page.locator('#project-detail h1').textContent()).includes(project.title))
     const refreshed = await page.reload(); assert.equal(refreshed.status(), 200); await page.locator('#project-detail h1').waitFor()
     for (const link of project.externalLinks) assert.equal(await page.locator('#project-detail a[target="_blank"]').getAttribute('href'), link.url)
     await page.getByRole('link', { name: /Back to (Design Cases|Side Quests)/ }).click()
     assert.equal(new URL(page.url()).hash, project.category === 'case' ? '#design-cases' : '#side-quests')
-    if (project.id === 'bachelor-thesis') { await page.goto(origin + path(project)); await page.locator('.project-status').waitFor(); assert.match(await page.locator('#project-detail').textContent(), /publication is planned/) }
   }
   for (const [width,height] of [[320,740],[390,844],[600,900],[768,1024],[1024,1366],[1180,820],[1440,900],[1512,982],[844,390],[1280,600]]) {
     await page.setViewportSize({ width,height })
@@ -69,13 +68,13 @@ try {
       const hiddenControls = await page.locator('#project-detail a, #project-detail button').evaluateAll(elements => elements.filter(el => { const r = el.getBoundingClientRect(); return r.x < 0 || r.right > innerWidth + 1 }).map(el => el.textContent))
       assert.deepEqual(hiddenControls, [], `${width}×${height}: ${project.id} clipped controls`)
     }
-    console.log(`PASS ${width}×${height}: both galleries and 11 detail layouts`)
+    console.log(`PASS ${width}×${height}: both galleries and 10 detail layouts`)
   }
   await page.setViewportSize({width:390,height:844}); await page.goto(origin)
   await page.getByRole('button', {name:'Open navigation'}).click(); await page.getByRole('button', {name:'SIDE QUESTS',exact:true}).click(); await highlight('SIDE QUESTS')
   await page.getByRole('button', {name:'Open navigation'}).click(); await page.keyboard.press('Escape'); assert.equal(await page.locator('nav.is-open').count(),0)
   await page.setViewportSize({width:1512,height:982}); await page.goto(origin+'#experience'); await highlight('EXPERIENCE')
-  await page.getByRole('button', {name:/Read INDUSTRIAL EXPERIENCE/}).hover(); await page.locator('#experience-note').waitFor({state:'visible'}); await page.keyboard.press('Escape'); await page.locator('#experience-note').waitFor({state:'hidden'})
+  await page.locator('.milestone-marker[aria-label^="Read INDUSTRIAL EXPERIENCE"]').hover(); await page.locator('.milestone-marker[aria-label^="Read INDUSTRIAL EXPERIENCE"]').click(); await page.locator('#experience-note').waitFor({state:'visible'}); await page.keyboard.press('Escape'); await page.locator('#experience-note').waitFor({state:'hidden'})
   await page.goto(origin+'#contacts'); assert(await page.locator('#contacts .contact-card').count()===3)
   const missing = await page.goto(origin+'cases/not-a-project/'); assert.equal(missing.status(),404); await page.getByRole('heading',{name:'Project not found'}).waitFor()
   assert.deepEqual(errors, [])

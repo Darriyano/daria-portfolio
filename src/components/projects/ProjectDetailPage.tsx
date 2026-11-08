@@ -8,10 +8,12 @@ import { navigateTo, siteUrl } from '../../routing/navigation'
 import { InternalLink } from './InternalLink'
 import { ProjectChapterNavigation } from './ProjectChapterNavigation'
 import { DetailImageComposition } from './DetailImageComposition'
+import { scrapbookAsset, scrapbookProjects } from '../../data/scrapbook'
+import { ScrapbookCollage } from './ScrapbookCollage'
 
 export function BackToGallery({ project }: { project: GalleryProject }) {
   const id = galleryId(project)
-  return <InternalLink className="back-to-gallery" href={siteUrl(`#${id}`)} aria-label={`Back to ${project.category === 'case' ? 'Design Cases' : 'Side Quests'}`}>‹</InternalLink>
+  return <InternalLink className="back-to-gallery" href={siteUrl(`#${id}`)} aria-label={`Back to ${project.category === 'case' ? 'Design Cases' : 'Side Quests'}`}><span aria-hidden="true">‹</span><span className="back-label">BACK TO {project.category === 'case' ? 'CASES' : 'QUESTS'}</span></InternalLink>
 }
 export default function ProjectDetailPage({ project }: { project: GalleryProject }) {
   const chapters = getProjectChapters(project)
@@ -20,6 +22,7 @@ export default function ProjectDetailPage({ project }: { project: GalleryProject
   const chapter = chapters[index]
   const preview = getProjectPreview(chapter.presentation)
   const heading = useRef<HTMLHeadingElement>(null)
+  const art = scrapbookProjects[project.id]
   useLayoutEffect(() => { heading.current?.focus({ preventScroll: true }) }, [project.id, chapter.id])
   const change = (next: number) => {
     if (next < 0 || next >= chapters.length) return
@@ -28,21 +31,24 @@ export default function ProjectDetailPage({ project }: { project: GalleryProject
     else url.searchParams.set('chapter', chapters[next].id)
     navigateTo(url.href)
   }
-  return <main id="project-detail" className={`project-detail ${project.category === 'case' ? 'design' : 'side-quest'}`}>
+  return <main id="project-detail" data-layout={art?.reverse ? 'media-left' : 'text-left'} className={`project-detail scrapbook-detail ${art?.reverse ? 'collage-first' : ''} ${project.category === 'case' ? 'design' : 'side-quest'}`}>
     <article className={`project-content ${chapter.presentation.presentationVariant}`} data-source-node={chapter.sourceNodeId}>
-      <div className="detail-heading"><BackToGallery project={project} /><h1 tabIndex={-1} ref={heading}>{chapter.presentation.titleArtwork ? <><img className="title-artwork" src={chapter.presentation.titleArtwork} alt="" /><span className="sr-only">{preview.title}</span></> : preview.title}</h1></div>
-      {project.externalLinks.length > 0 && <div className="detail-actions">{project.externalLinks.map(link => <a className="paper-action" href={link.url} key={link.url} target="_blank" rel="noopener noreferrer">
-        <img className="paper-action-background" src={assetUrl('/assets/e8248.svg')} alt="" />
-        <img className="paper-action-circle" src={assetUrl('/assets/3db81.svg')} alt="" />
-        <span className="paper-action-label">{link.label} ↗</span>
-      </a>)}</div>}
-      {project.id === 'novel' && <div className="detail-coming-soon"><img src={assetUrl('/assets/e8248.svg')} alt="" /><span>Coming soon on Steam</span></div>}
-      <div className="project-copy">
-        {project.status === 'ongoing' && <p className="project-status">Ongoing research · 2026–27</p>}
-        {preview.description.length > 0 && <div className="project-description-group">{preview.description.map((text, i) => <p className="project-description" key={i}>{text}</p>)}</div>}
-        <div className="contributions">{preview.contributions.map((item, i) => <div className="contribution" key={i}><img src={assetUrl('/assets/840f7.svg')} alt="" /><div><p>{item.label}</p><strong>{item.text}</strong></div></div>)}</div>
+      <BackToGallery project={project} />
+      <div className="project-intro">
+        <div className="project-summary">
+          <div className="detail-heading"><h1 tabIndex={-1} ref={heading}><img className="detail-title-paper" src={scrapbookAsset('paper-torn.webp')} alt="" aria-hidden="true" /><span>{preview.title}</span></h1></div>
+          {project.externalLinks.length > 0 && <div className="detail-actions">{project.externalLinks.map(link => <a className="paper-action" href={link.url} key={link.url} target="_blank" rel="noopener noreferrer">
+            <img className="paper-action-background" src={assetUrl('/assets/e8248.svg')} alt="" />
+            <img className="paper-action-circle" src={assetUrl('/assets/3db81.svg')} alt="" />
+            <span className="paper-action-label scrapbook-cta-label"><span>{link.label}</span>{' '}<span className="scrapbook-cta-arrow" aria-hidden="true">↗</span></span>
+          </a>)}</div>}
+          {project.id === 'novel' && <div className="detail-coming-soon"><img src={assetUrl('/assets/e8248.svg')} alt="" /><span className="scrapbook-cta-label">Coming soon on Steam</span></div>}
+          <div className="project-copy">
+            {[...preview.description, ...preview.contributions.map(item => item.text)].map((text, i) => <p className="project-description" key={i}>{text}</p>)}
+          </div>
+        </div>
+        {art?.photos ? <ScrapbookCollage name={art.photos} title={project.title} /> : project.category === 'quest' ? <DetailImageComposition project={chapter.presentation} /> : <ProjectPresentation project={chapter.presentation} />}
       </div>
-      {project.category === 'quest' ? <DetailImageComposition project={chapter.presentation} /> : <ProjectPresentation project={chapter.presentation} />}
       <ProjectChapterNavigation index={index} total={chapters.length} onChange={change} />
     </article>
   </main>

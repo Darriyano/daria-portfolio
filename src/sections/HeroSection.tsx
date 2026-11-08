@@ -1,6 +1,8 @@
 import { assetUrl } from '../utils/assetUrl'
 import { HeroSelectionAnimation } from '../components/decorations/HeroSelectionAnimation'
 import { sectionIds } from '../data/navigation'
+import { scrapbookAsset } from '../data/scrapbook'
+import { PaperSticker } from '../components/decorations/PaperSticker'
 export function HeroSection({ active, navigate }: { active: boolean; navigate: (index: number) => void }) {
   return <div className="hero-layout">
     <div className="hero-copy">
@@ -9,6 +11,11 @@ export function HeroSection({ active, navigate }: { active: boolean; navigate: (
       <p className="hero-description">... and gamedev artist<br />Computer Science & AI background<br /> From frontend to design, research<br className="desktop-break" /> and game development</p>
       <div className="hero-actions"><a className="primary-button" href={`#${sectionIds[2]}`} onClick={(event) => { event.preventDefault(); navigate(2) }}>VIEW CASES</a><a href={`#${sectionIds[4]}`} onClick={(event) => { event.preventDefault(); navigate(4) }}>MESSAGE ME</a></div>
     </div>
-    <div className="portrait-composition"><picture><source media="(max-width:1023px)" srcSet={assetUrl("/assets/portrait-mobile.svg")} /><img className="portrait" src={assetUrl("/assets/portrait-desktop.svg")} alt="Daria Stepanova, product designer and gamedev artist" fetchPriority="high" /></picture><img className="portrait-star" src={assetUrl("/assets/ed5d2.svg")} alt="" /><img className="portrait-heart" src={assetUrl("/assets/63f31.svg")} alt="" /></div>
+    <div className="portrait-composition" data-source-node="375:1279">
+      <img className="portrait-paper" src={scrapbookAsset('portrait-paper.webp')} alt="" aria-hidden="true" />
+      <div className="portrait-color"><img src={scrapbookAsset('portrait-backing.svg')} alt="" aria-hidden="true" /></div>
+      <div className="portrait-crop"><img className="portrait" src={scrapbookAsset('portrait.webp')} alt="Daria Stepanova, product designer and gamedev artist" width={850} height={1280} fetchPriority="high" /></div>
+      <PaperSticker kind="star" className="portrait-star" /><PaperSticker kind="heart" className="portrait-heart" />
+    </div>
   </div>
 }

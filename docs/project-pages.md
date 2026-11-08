@@ -4,7 +4,7 @@ Implemented locally on `feature/project-pages`. No push or deployment is include
 
 ## Preview
 
-Run `npm run dev`, then open http://localhost:5173/#design-cases or http://localhost:5173/#side-quests. Each card links to its internal page. A direct example is http://localhost:5173/cases/bachelor-thesis/.
+Run `npm run dev`, then open http://localhost:5173/#design-cases or http://localhost:5173/#side-quests. Each card links to its internal page. A direct example is http://localhost:5173/cases/allforms/.
 
 For a production-style preview with no SPA fallback:
 
@@ -24,7 +24,7 @@ Open http://localhost:4174/. Stop the server with Ctrl+C. Production uses https:
 
 ## Content and chapters
 
-`src/data/projectCatalog.json` defines gallery order, routes, visible names, years, tags, preview assets, Figma node mappings, external links and chapter lists. It is shared with the Vite build plugin, so new project routes automatically produce static HTML entries. The VK Hackathon year is 2024, confirmed by the owner during implementation. Moloch uses `/quests/novel/`. Bachelor Thesis (2026–27) is ongoing; its copy does not claim completed research or publication.
+`src/data/projectCatalog.json` defines gallery order, routes, visible names, years, tags, preview assets, Figma node mappings, external links and chapter lists. It is shared with the Vite build plugin, so new project routes automatically produce static HTML entries. The VK Hackathon year is 2024, confirmed by the owner during implementation. Moloch uses `/quests/novel/`.
 
 `src/data/projectDetails.ts` composes approved detail presentations. Existing source copy and media from `designCases.ts` and `sideQuests.ts` are reused. Gallery previews are separate exports from the confirmed Figma image library; the two hackathon previews have separate source IDs. The gallery JPEGs are 1140×540 (three times the desktop image slot), quality 88; the paper frame remains SVG. Original detailed PNGs retain transparency and sharp UI artwork.
 
@@ -34,7 +34,7 @@ To add a chapter:
 2. Add the approved presentation to `presentations[projectId][chapterId]` in `projectDetails.ts` using an existing composition or a new reusable composition primitive.
 3. Navigation appears automatically for two or more chapters. It updates the `?chapter=` query, presentation content and source frame together. Endpoints are disabled; it never loops or changes projects. Single-chapter pages render neither arrows nor counter.
 
-All 11 current projects have one confirmed chapter. Future research/process/results chapters have not been fabricated. External links exist only for DJU and the two PiterUX talks; Moloch's Steam notice is text, not an invented link.
+All 10 current projects have one confirmed chapter. Future research/process/results chapters have not been fabricated. External links exist only for DJU and the two PiterUX talks; Moloch's Steam notice is text, not an invented link.
 
 ## Routing and history
 
@@ -59,14 +59,14 @@ on port 4177 with `node scripts/project-pages-server.mjs dist / 4177`, then run:
 PORTFOLIO_URL=http://127.0.0.1:4177/ PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node scripts/root-domain-qa.mjs
 ```
 
-This checks all 11 generated entries, direct visits, refreshes, directory
+This checks all 10 generated entries, direct visits, refreshes, directory
 redirects, return links, all configured fonts, visible images, scripts and styles,
 and the absence of the old `/daria-portfolio/` resource prefix. The workflow
 checks the Pages custom-domain setting after deployment. GitHub Actions uses
 the repository setting rather than a `CNAME` file; see
 [GitHub's custom-domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
-The main check defaults to http://127.0.0.1:4173/ and requires the static server above. It covers 11 direct routes and refreshes, slashless redirects, gallery order/counts, correct navigation highlights, client navigation, history, gallery restoration, external destinations, hidden single-chapter controls, loaded assets and 10 portrait/landscape viewports (320×740 through 1512×982, including 844×390 and 1280×600). It also checks the existing mobile menu, Experience hover notes and Contacts. The chapter check uses the Vite server on port 5173 and a dev-only fixture for keyboard controls, counts and bounded endpoints. Fixture content never enters the production catalog or bundle.
+The main check defaults to http://127.0.0.1:4173/ and requires the static server above. It covers 10 direct routes and refreshes, slashless redirects, gallery order/counts, correct navigation highlights, client navigation, history, gallery restoration, external destinations, hidden single-chapter controls, loaded assets and 10 portrait/landscape viewports (320×740 through 1512×982, including 844×390 and 1280×600). It also checks the existing mobile menu, Experience hover notes and Contacts. The chapter check uses the Vite server on port 5173 and a dev-only fixture for keyboard controls, counts and bounded endpoints. Fixture content never enters the production catalog or bundle.
 
 Legacy carousel scripts remain as references for the previous layout; their project-count/wrapping assertions no longer describe the new galleries. Public GitHub Pages responses can only be verified after an approved deployment; the local checks emulate static file serving at both bases.
 

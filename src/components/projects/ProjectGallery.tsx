@@ -1,15 +1,18 @@
 import { assetUrl } from '../../utils/assetUrl'
-import { projectLabel, projectPath, type GalleryProject } from '../../data/projectCatalog'
+import { projectPath, type GalleryProject } from '../../data/projectCatalog'
 import { siteUrl } from '../../routing/navigation'
 import { InternalLink } from './InternalLink'
+import { scrapbookAsset, scrapbookProjects } from '../../data/scrapbook'
 
 export function ProjectPreviewCard({ project }: { project: GalleryProject }) {
-  return <InternalLink id={`project-${project.id}`} className="project-preview-card" href={siteUrl(projectPath(project))} data-source-node={project.galleryNodeId}>
-    <img className="preview-paper" src={assetUrl('/assets/10a21.svg')} alt="" aria-hidden="true" />
-    <img className="preview-image" src={assetUrl(project.preview)} alt={project.previewAlt} width={1140} height={540} loading="lazy" decoding="async" data-source-node={project.previewNodeId} />
-    <div className="preview-caption"><h3>{projectLabel(project)} <span aria-hidden="true">↗</span></h3>
-      <ul className="preview-tags" aria-label="Categories">{project.tags.map(tag => <li key={tag}>#{tag}</li>)}</ul>
+  const art = scrapbookProjects[project.id]
+  return <InternalLink id={`project-${project.id}`} className={`project-preview-card paper-${art?.paper ?? 'graph'} ${project.category === 'case' ? 'case-preview' : 'quest-preview'}`} href={siteUrl(projectPath(project))} data-source-node={project.galleryNodeId}>
+    <img className="preview-paper" src={scrapbookAsset(`paper-${art?.paper ?? 'graph'}.webp`)} alt="" aria-hidden="true" />
+    <img className="preview-image" src={art ? scrapbookAsset(`${art.image}-thumbnail.webp`) : assetUrl(project.preview)} alt={project.previewAlt} width={2280} height={1080} loading="lazy" decoding="async" data-source-node={art?.node ?? project.previewNodeId} />
+    <div className="preview-caption"><h3>{project.title} <span className="preview-arrow" aria-hidden="true">↗</span></h3>
     </div>
+    <img className="preview-tape" src={scrapbookAsset('tape.svg')} alt="" aria-hidden="true" />
+    {art?.paper === 'folded' && <img className="preview-tape tape-second" src={scrapbookAsset('tape.svg')} alt="" aria-hidden="true" />}
   </InternalLink>
 }
 export function ProjectGallery({ projects, title }: { projects: GalleryProject[]; title: string }) {

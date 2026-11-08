@@ -1,0 +1,203 @@
+/* Figma desktop compositions translated into fluid paper and photo layouts.
+   Experience selectors are deliberately limited to its heading artwork. */
+.presentation-section:not(.section-experience), .scrapbook-detail {
+  background: linear-gradient(118deg, #111 29%, #211619 65%, #49232d 100%);
+}
+.section-main { background: linear-gradient(112deg, #111 34%, #25181d 66%, #8d3449 110%); }
+.paper-sticker { display: block; overflow: hidden; pointer-events: none; aspect-ratio: 1; }
+.paper-sticker img { position: absolute; max-width: none; pointer-events: none; }
+.sticker-heart img { width: 229.5%; height: 115.49%; left: -5.69%; top: -12.5%; }
+.sticker-star img { width: 194.09%; height: 100%; left: -94.09%; top: 0; }
+.sticker-flower img { inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.primary-button {
+  position: relative; isolation: isolate; background: none; box-shadow: none;
+  border-radius: 0; padding: 24px 36px; min-height: 80px; transform: rotate(2deg);
+}
+.primary-button::before { content: ''; position: absolute; z-index: -1; inset: -12px -16px; background: url('/assets/scrapbook/paper-button.webp') center / 100% 100% no-repeat; transform: rotate(-5deg); filter: drop-shadow(0 4px 3px #0005); }
+.primary-button:hover { transform: rotate(0) translateY(-3px); }
+.section-main .sign, .section-main .er { border-radius: 0; }
+.section-main .sign { transform: rotate(2deg); }
+.section-main .designer > span:first-child { font-style: italic; }
+.section-main .product, .section-main .designer > span:first-child { font-family: 'Rethink Sans',sans-serif; font-weight: 800; }
+.section-main .er { font-family: 'Rethink Sans',sans-serif; font-weight: 700; }
+.section-main .selection-overlay { top: calc(1.1em + 16px); }
+.section-main .portrait-composition {
+  aspect-ratio: 496 / 734; width: 100%; max-width: 496px; margin: 0 0 0 auto;
+  filter: drop-shadow(3px 7px 5px #0004);
+}
+.portrait-composition .portrait-paper { position: absolute; width: 116.5%; max-width: none; height: 109.7%; left: -5.3%; top: -6.5%; }
+.portrait-color { position: absolute; left: 5.24%; top: 0; width: 94.76%; height: 94.41%; overflow: hidden; }
+.portrait-color > img { position: absolute; width: 146.8%; max-width: none; height: 68.1%; left: -23.4%; top: 15.95%; transform: rotate(-90deg); }
+.portrait-crop { position: absolute; left: -1.6%; top: -4.36%; width: 101.8%; height: 99.73%; overflow: hidden; }
+.portrait-crop .portrait { position: absolute; width: 103.16%; max-width: none; height: 107.35%; left: -1.61%; top: -5.45%; object-fit: fill; }
+.portrait-composition .portrait-star { width: 35.3%; right: -5%; top: -11%; transform: none; }
+.portrait-composition .portrait-heart { width: 31.4%; left: -20%; bottom: -5%; transform: rotate(-11.96deg); }
+
+/* Same heading dimensions and constellation positioning; only its material changes. */
+.experience-content h2 > span { position: relative; isolation: isolate; background: none; border-radius: 0; transform: rotate(-1.38deg); }
+.experience-content h2 > span::before { content: ''; position: absolute; z-index: -1; inset: -30px -16px; background: url('/assets/scrapbook/heading-paper.webp') center / 100% 100% no-repeat; transform: rotate(-4deg); }
+
+.project-gallery h2 { position: relative; isolation: isolate; width: fit-content; max-width: 100%; padding: 20px 36px; margin: 0 0 64px; font-size: clamp(32px,4.23vw,64px); transform: rotate(-1.38deg); }
+.project-gallery h2::before { content: ''; position: absolute; z-index: -1; inset: -28px -8px; background: url('/assets/scrapbook/heading-paper.webp') center / 100% 100% no-repeat; transform: rotate(-4deg); }
+.project-gallery-grid { grid-template-columns: repeat(3,minmax(0,420px)); gap: 68px 52px; }
+.project-preview-card { aspect-ratio: auto; min-height: 0; padding: 0 20px 20px; gap: 10px; justify-content: flex-start; container-type: inline-size; }
+.project-preview-card .preview-paper { inset: -40px auto auto -6.9%; width: 116.2%; height: calc(100% + 64px); object-fit: fill; filter: drop-shadow(2px 4px 4px #0005); }
+.project-preview-card.paper-folded .preview-paper { top: -32px; }
+.project-preview-card.paper-notched .preview-paper { width: calc((100cqw + 40px) * .96); height: calc((100cqw + 40px) * 1.174); left: 2%; top: -26%; transform: rotate(-90deg); }
+.project-preview-card.paper-torn .preview-paper { inset: -8px auto auto -2.6%; width: 110.2%; height: calc(100% + 12px); }
+.project-preview-card .preview-image { width: 100%; aspect-ratio: 365/200; object-fit: cover; transform: rotate(2deg); box-shadow: 2px 3px 5px #24131b44; }
+.preview-caption { position: relative; padding-left: 14px; transform: rotate(2deg); }
+.preview-caption h3 { font-family: var(--chalk); font-weight: 400; font-size: clamp(19px,1.85vw,28px); line-height: 1.25; overflow-wrap: normal; color: #3d3232; }
+.preview-caption h3 > .preview-arrow { position: absolute; right: 0; top: -30px; font: 600 .65em 'Rethink Sans',sans-serif; opacity: 0; transition: opacity .2s; }
+.paper-torn .preview-caption { padding-left: 32px; }
+.paper-notched .preview-caption { padding-left: 26px; }
+.preview-tags { color: #574246; font-size: clamp(11px,.93vw,14px); font-weight: 600; margin-top: 6px; gap: 4px 8px; }
+.preview-tape { position: absolute; right: 6%; top: -24px; width: 62px; height: 29px; transform: rotate(-57.2deg); pointer-events: none; }
+.paper-folded .preview-tape { right: auto; left: 12%; transform: rotate(-114.67deg); }
+.paper-folded .tape-second { top: auto; bottom: -10px; left: auto; right: 4%; }
+.paper-torn .preview-tape { right: auto; left: 4%; top: 0; transform: rotate(-146.38deg); }
+.project-preview-card:hover { transform: translateY(-6px) rotate(-1deg); }
+.project-preview-card:hover .preview-caption h3 > .preview-arrow, .project-preview-card:focus-visible .preview-caption h3 > .preview-arrow { opacity: 1; }
+
+.contact-card .contact-sticker { position: absolute; }
+.contact-card .contact-sticker img { height: 100%; }
+.contact-card .sticker-heart img { height: 115.49%; }
+.contact-card .sticker-heart { transform: rotate(-12deg); }
+.contact-card .sticker-flower { width: 170px; right: -50px; bottom: -10px; }
+
+/* Keep the copy stack independent of the collage's intrinsic height. */
+.project-detail.scrapbook-detail > .project-content {
+  display: flex; flex-direction: column; gap: 40px; min-height: 0;
+}
+.project-detail.scrapbook-detail { padding-top: 40px; }
+.project-intro {
+  display: grid; grid-template-columns: minmax(0,591fr) minmax(0,793fr);
+  gap: clamp(80px,7.4vw,112px); align-items: start;
+}
+.project-summary { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+.scrapbook-detail .back-to-gallery { display: flex; align-items: center; gap: 12px; width: fit-content; min-height: 44px; font-family: 'Rethink Sans',sans-serif; font-size: 32px; }
+.back-label { font-size: 18px; font-weight: 500; letter-spacing: .02em; }
+.project-detail.scrapbook-detail .detail-heading { padding: 0 !important; display: block; width: 100%; max-width: 587px; container-type: inline-size; }
+.scrapbook-detail .detail-heading h1 {
+  position: relative; isolation: isolate; display: grid; place-items: center;
+  width: 100%; aspect-ratio: 587/257; min-height: 0; padding: 20px 12%;
+  text-align: center; font-size: clamp(22px,8cqw,48px); line-height: 1.13;
+  color: #30212b; text-transform: uppercase; overflow-wrap: normal; text-wrap: balance;
+}
+.scrapbook-detail .detail-heading h1::before { content: ''; position: absolute; z-index: -2; inset: 0; background: url('/assets/scrapbook/title-backing.svg') center / contain no-repeat; transform: rotate(2deg); }
+.detail-title-paper { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: fill; transform: rotate(-4deg); filter: drop-shadow(0 0 4px #1c111855); }
+.project-detail.scrapbook-detail .project-summary > .project-copy { padding: 0; order: 0; gap: 24px; }
+.project-detail.scrapbook-detail .project-description { font-size: clamp(19px,1.45vw,22px); font-weight: 400; line-height: 1.4; max-width: none; margin: 0; padding: 0; }
+.scrapbook-detail .detail-actions, .scrapbook-detail .detail-coming-soon { order: 1; width: min(365px,100%); margin: 12px 0; align-self: flex-start; }
+.scrapbook-detail .detail-actions .paper-action { width: 100%; min-height: 92px; display: flex; justify-content: center; align-items: center; }
+.scrapbook-detail .detail-actions .paper-action-background, .scrapbook-detail .detail-coming-soon img { display: none; }
+.scrapbook-detail .detail-actions .paper-action-circle { display: none; }
+.scrapbook-detail .paper-action::before, .scrapbook-detail .detail-coming-soon::before { content: ''; position: absolute; left: -8px; top: 50%; width: calc(100% + 16px); aspect-ratio: 3/1; background: url('/assets/scrapbook/paper-button.webp') center / contain no-repeat; z-index: -1; transform: translateY(-50%) rotate(-3deg); }
+.scrapbook-detail .paper-action { isolation: isolate; color: var(--cream); }
+.scrapbook-detail .detail-actions .paper-action-label { padding: 0; font-size: clamp(16px,1.5vw,23px); white-space: normal; color: var(--cream); }
+.scrapbook-detail .detail-coming-soon { display: inline-flex; align-items: center; justify-content: center; color: var(--cream); padding: 28px; text-align: center; }
+/* Center the complete label above the paper's lower shadow, inside the stitching. */
+.scrapbook-detail .scrapbook-cta-label { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-width: calc(100% - 24px); min-width: 0; line-height: 1.15; transform: translateY(-2px) rotate(3deg); }
+.scrapbook-detail .scrapbook-cta-label > span:first-child { min-width: 0; }
+.scrapbook-detail .scrapbook-cta-arrow { flex: none; }
+.scrapbook-detail .detail-coming-soon .scrapbook-cta-label { max-width: 100%; }
+.scrapbook-collage { grid-column: 2; grid-row: 1; position: relative; align-self: start; min-width: 0; width: 100%; aspect-ratio: 793/810; }
+.scrapbook-photo { position: absolute; max-width: none; height: auto; filter: drop-shadow(2px 5px 5px #0004); }
+.scrapbook-photo.photo-a { width: 85%; left: 1%; top: -2%; }
+.scrapbook-photo.photo-b { width: 66%; left: 34%; top: 45%; }
+.scrapbook-photo.assembled-photo { width: 54%; margin: 0; left: 42%; top: 51%; aspect-ratio: 422.474/351.197; transform: rotate(10.1deg); background: #fff0d9; isolation: isolate; }
+.photo-mount { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .6; z-index: -1; }
+.photo-viewport { position: absolute; left: 4.97%; top: 5.69%; width: 87.45%; height: 71.49%; overflow: hidden; background: #e26088; }
+.photo-viewport img { position: absolute; max-width: none; }
+.photo-viewport .example-a { left: 1.6%; top: 2.25%; width: 48.74%; height: 135.4%; }
+.photo-viewport .example-b { left: 51.7%; top: -10.9%; width: 46.12%; height: 135.4%; }
+.photo-viewport .vita-mobile-example { left: 24.03%; top: 1.23%; width: 53.52%; height: 192.2%; object-fit: cover; }
+.photo-viewport .matematch-mobile-example { left: -1.2%; top: .15%; width: 106.6%; height: auto; }
+.assembled-photo.matematch .photo-tape { left: 64.78%; top: -14.83%; transform: rotate(10.69deg); }
+.assembled-photo figcaption { position: absolute; left: 5.05%; top: 84.53%; font-size: clamp(10px,1.1vw,19px); font-weight: 600; color: #30212b; }
+.photo-tape { position: absolute; left: 58%; top: -16%; width: 10.65%; height: 28.4%; background: #ff719abf; transform: rotate(34.12deg); }
+.collage-sticker { position: absolute; width: 22%; left: -5%; top: 62%; transform: rotate(-8deg); }
+.collage-top-sticker { position: absolute; width: 24%; left: 68%; top: -10%; }
+.scrapbook-detail.collage-first .project-intro { grid-template-columns: minmax(0,793fr) minmax(0,591fr); }
+.scrapbook-detail.collage-first .project-summary { grid-column: 2; grid-row: 1; }
+.scrapbook-detail.collage-first .scrapbook-collage { grid-column: 1; }
+
+@media (min-width:1200px) {
+  /* Include the lower print's absolute overhang and shadow in the gradient's height. */
+  .scrapbook-detail.side-quest .scrapbook-collage { margin-bottom: calc(4.2% + 8px); }
+  /* Move the whole AllForms collage while reducing its grid footprint. */
+  .scrapbook-collage[data-project="allforms"] { margin-top: -8px; }
+  .section-main .hero-layout { grid-template-columns: minmax(0,720fr) minmax(0,496fr); gap: clamp(64px,9vw,168px); }
+  .section-main .hero-title { font-size: clamp(58px,5.29vw,80px); }
+  .section-main .hero-description { font-size: clamp(24px,2.12vw,32px); }
+  .section-main .hero-actions { gap: 60px; }
+  .section-main .primary-button { font-size: 32px; }
+  .section-design-cases:has(.project-gallery), .section-side-quests:has(.project-gallery) { padding-top: 160px; padding-bottom: 88px; }
+  :is(.section-design-cases,.section-side-quests) > .section-inner { top: 0; }
+}
+/* Share the available viewport height between the copy and proportional portrait.
+   Content can grow the grid when a very short window needs natural scrolling. */
+@media (min-width:1200px), (min-width:1024px) and (orientation:landscape) {
+  .section-main {
+    --hero-top: clamp(128px,calc(100dvh - 656px),184px);
+    --hero-bottom: 32px;
+    --hero-space: max(0px,calc(100dvh - var(--hero-top) - var(--hero-bottom)));
+    min-height: 100dvh;
+    padding-block: var(--hero-top) var(--hero-bottom);
+    overflow: visible;
+  }
+  .section-main > .section-inner { min-height: 0; }
+  .section-main .hero-layout { min-height: var(--hero-space); }
+  .section-main .hero-copy > * { flex-shrink: 0; }
+  .section-main .hero-description { margin-top: clamp(16px,calc((100dvh - 650px) * .12),64px); }
+  .section-main .hero-actions { margin-top: auto; padding-block: clamp(16px,calc((100dvh - 650px) * .1),40px) 0; }
+  /* Leave room for the paper and stickers outside the portrait's own box. */
+  .section-main .portrait-composition { max-width: min(496px,calc(max(420px,var(--hero-space)) * .58)); }
+}
+@media (min-width:1024px) and (max-width:1250px) and (orientation:landscape) {
+  .section-main .portrait-composition { margin-right: 16px; }
+}
+@media (min-width:601px) and (max-width:1199px) {
+  .project-gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 68px 40px; }
+  .preview-caption h3 { font-size: 23px; }
+  .preview-tags { font-size: 13px; }
+}
+@media (max-width:1199px) {
+  .project-intro, .scrapbook-detail.collage-first .project-intro { display: flex; flex-direction: column; gap: 48px; }
+  .project-summary { width: 100%; }
+  .project-detail.scrapbook-detail .detail-heading { max-width: 540px; }
+  .scrapbook-detail .scrapbook-collage { width: min(720px,100%); margin: 24px auto 0; }
+}
+@media (max-width:1023px) {
+  .section-main .selection-frame { top: 0; }
+  .section-main .hero-layout { gap: 76px; }
+  .section-main .portrait-composition { max-width: 400px; width: 82%; margin: 0 auto; }
+  .section-main .primary-button { min-height: 64px; padding: 16px 26px; }
+  .project-gallery h2 { margin-bottom: 56px; padding: 12px 24px; font-size: clamp(28px,5.5vw,46px); }
+  .project-gallery h2::before { inset: -24px -8px; }
+  .experience-content h2 > span::before { inset: -16px -8px; }
+  .contact-card .sticker-flower { width: 88px; right: -16px; bottom: -8px; }
+}
+@media (max-width:600px) {
+  .project-gallery-grid { grid-template-columns: minmax(0,1fr); gap: 72px; }
+  .project-preview-card { padding: 0 14px 18px; }
+  .project-preview-card .preview-paper { top: -28px; height: calc(100% + 50px); }
+  .project-preview-card.paper-torn .preview-paper { top: -6px; height: calc(100% + 16px); }
+  .project-preview-card.paper-notched .preview-paper { width: calc((100cqw + 28px) * .96); height: calc((100cqw + 28px) * 1.174); left: 2%; top: -24%; }
+  .preview-caption h3 { font-size: clamp(20px,5.2vw,28px); }
+  .preview-tags { font-size: 13px; }
+  .preview-tape { width: 48px; top: -18px; }
+  .project-gallery h2 { font-size: clamp(25px,6.5vw,38px); padding-inline: 18px; }
+  .project-detail.scrapbook-detail { padding-top: 24px; }
+  .project-detail.scrapbook-detail > .project-content { gap: 28px; }
+  .project-summary { gap: 28px; }
+  .scrapbook-detail .detail-heading h1 { padding-block: 12px; }
+  .scrapbook-detail .back-label { font-size: 14px; }
+  .project-detail.scrapbook-detail .project-summary > .project-copy { gap: 20px; }
+  .project-detail.scrapbook-detail .project-description { font-size: 18px; }
+  .scrapbook-detail .detail-actions { width: min(300px,100%); }
+  .scrapbook-detail .detail-actions .paper-action { min-height: 76px; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .primary-button { transition: transform .2s ease; }
+}

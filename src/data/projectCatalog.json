@@ -27,33 +27,6 @@
     "detailTitle": "AllForms (2026)"
   },
   {
-    "id": "bachelor-thesis",
-    "slug": "bachelor-thesis",
-    "category": "case",
-    "title": "Bachelor Thesis",
-    "year": "2026–27",
-    "tags": [
-      "AI",
-      "Science",
-      "UserExperience"
-    ],
-    "preview": "/assets/thesis-preview.jpg",
-    "previewAlt": "Bachelor Thesis — research manuscript and literature review",
-    "galleryNodeId": "273:3875",
-    "previewNodeId": "273:4226",
-    "previewLayer": "thesis 1",
-    "status": "ongoing",
-    "chapters": [
-      {
-        "id": "overview",
-        "title": "Overview",
-        "sourceNodeId": "276:4252"
-      }
-    ],
-    "externalLinks": [],
-    "detailTitle": "Bachelor Thesis (2026–27)"
-  },
-  {
     "id": "minigarden",
     "slug": "minigarden",
     "category": "case",
